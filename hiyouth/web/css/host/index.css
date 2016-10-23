@@ -1,0 +1,474 @@
+
+body, html {
+    background-color: #f3f3f3;
+}
+.edit-display .disabled {
+    color: inherit !important;
+    border: none;
+}
+
+.edit-display select.disabled {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+.header .header-content {
+    background-color: #FFFFFF;
+}
+
+.header-content {
+    border-bottom: solid 2px rgb(16, 208, 216);
+}
+
+.container-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+
+}
+
+.container {
+    margin-top: 15px;
+}
+
+.profile {
+    position: relative;
+    font-size: 16px;
+    background-color:#F9F9F9;
+    margin-bottom: 50px;
+}
+
+.profile-nav {
+    width: 138px;
+}
+
+.portrait-wrapper {
+    position: relative;
+    width: 170px;
+    height: 121px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 29px;
+    overflow: hidden;
+}
+
+.portrait {
+    position: relative;
+    padding: 4px;
+    margin-left: 14px;
+    width: 110px;
+    height: 110px;
+    box-sizing: border-box;
+    line-height: 110px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.portrait a > img {
+    width: 100%;
+    height: 100%;
+}
+
+.portrait > span {
+    position: absolute;
+    display: none;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.portrait:hover span {
+    display: inline;
+    background-color: #000;
+    color: #fff;
+    opacity: 0.5;
+    filter: Alpha(opacity=50);
+}
+
+.profile-nav {
+    text-align: center;
+}
+
+.profile-nav > h2 {
+    margin-bottom: 17px;
+}
+
+.profile-nav .idcardCi {
+    padding-bottom: 12px;
+    border-bottom: dashed 1px #E3E3E3;
+    margin-bottom: 0;
+}
+
+.btn-group > p {
+    position: relative;
+    text-align: center;
+    height: 58px;
+    line-height: 58px;
+    margin: 0;
+}
+
+.btn-group p:hover {
+    background-color: #16D0D8;
+}
+
+.btn-group > p a {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    display: inline-block;
+}
+
+.btn-group p:hover a {
+    color: #FFFFFF;
+}
+
+.btn-group > p span {
+    position: absolute;
+    margin-left: -35px;
+    color: rgb(16, 208, 216);
+}
+
+.btn-group p:hover span {
+    color: #FFFFFF;
+}
+
+.profile-edit {
+    margin-left: 138px;
+    padding: 25px;
+    background-color: #FFFFFF;
+    border: solid 1px #E3E3E3;
+    overflow: hidden;
+}
+
+.box-content {
+    border: none;
+}
+
+table {
+    font-size: 16px;
+}
+
+table tr {
+    height: 47px;
+    line-height: 47px;
+    box-sizing: border-box;
+}
+
+table tr th {
+    text-align: right;
+    word-wrap: normal;
+    white-space: pre;
+}
+
+table tr th > span {
+    margin-left: 5px;
+}
+
+table tr td {
+    padding-left: 15px;
+}
+
+td input[type="text"] {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    width: 258px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    border: solid 1px #E3E3E3;
+    font-size: inherit;
+}
+
+td input[type="radio"] {
+    margin-right: 0px;
+}
+
+
+.edit-display input.disabled[type="radio"]{
+    display: none;
+}
+
+.woman, .man{
+    margin-left: 10px;
+    margin-right: 70px;
+}
+
+select {
+    margin-right: 13px;
+}
+
+textarea {
+    width: 530px;
+    height: 70px;
+}
+
+.hotel-list p {
+    display: block;
+    float: left;
+    font-size: 16px;
+    padding: 12px 20px;
+}
+
+
+ul.card-list li {
+    overflow: visible; /*make sure the abs-list display overflow the cardlist-li, but remember have to set the height*/
+}
+
+ul.card-list > li {
+    padding: 3px 20px;
+    height: 80px;
+    line-height: 80px;
+    border: solid 2px #fff;
+
+}
+
+.card-list p {
+    float: left;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+}
+.card-list p.no_data{
+    float: none;
+}
+
+.card-list .portrait-70 {
+    margin: 0;
+}
+
+.box .name {
+    width: 205px;
+    margin-left: 5px;
+    text-align: left;
+}
+
+.box .location {
+    width: 150px;
+    /* margin-right: 15px; */
+}
+
+.box .Ci {
+    width: 98px;
+}
+
+.box .score {
+    text-align: center;
+    width: 142px;
+    /* margin-right: 50px; */
+}
+.box .news{
+    width: 48px;
+}
+.box .option {
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.box .option a span {
+    line-height: 14px;
+}
+.hotel-list .name {
+    width: 142px;
+    margin-left: 129px;
+}
+.hotel-list .location{
+    width: 108px;
+    text-align: center;
+}
+.hotel-list .Ci {
+    width: 100px;
+    padding: 12px 5px;
+    text-align: center;
+}
+.hotel-list .score{
+    width: 90px;
+}
+.hotel-list .news{
+    width: 60px;
+}
+.hotel-list .option {
+    width: 64px;
+    float: right;
+    margin-right: 68px;
+}
+
+p.score img{
+    width: 17px;
+}
+
+.abs-list {
+    display: none;
+    top: 56px;
+    left: -13px;
+    z-index: 10;
+    list-style: none;
+    line-height: 26px;
+    text-align: center;
+}
+
+.abs-list > li {
+    padding: 0 10px;
+    height: 29px;
+    width: 78px;
+    background-color: rgb(243, 243, 243);
+    border: solid 1px #E3E3E3;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.abs-list > li a:hover {
+    color: rgb(16, 208, 216);
+}
+
+.abs-list > li:hover {
+    padding-right: 15px;
+    border: solid 1px #E3E3E3;
+    -webkit-transform: translateX(-5px);
+    -moz-transform: translateX(-5px);
+    -ms-transform: translateX(-5px);
+    -o-transform: translateX(-5px);
+    transform: translateX(-5px);
+}
+
+.abs-toggle:hover + ul {
+    display: block;
+}
+
+.abs-list:hover {
+    display: block;
+}
+
+.pagination-wrapper {
+    margin: 48px 0 40px;
+    text-align: center;
+}
+
+
+@media screen and   (max-width: 768px){
+    .portrait-wrapper{
+        width: 100%;
+    }
+    .portrait{
+        float: none;
+        width: 120px;
+        margin-left: 0;
+        text-align: center;
+        display: inline-block;
+    }
+    .portrait img{
+        width: 110px;
+        height: 110px;
+    }
+    .profile-nav {
+        width: 100%;
+        float: inherit;
+        box-sizing: border-box;
+    }
+
+    .btn-group p {
+        width: 50%;
+        height: 40px;
+        line-height: 40px;
+        float: left;
+    }
+    .profile-edit{
+        width: 100%;
+        margin-left: 0;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+    table{display: block}
+    table  tr{
+        height: auto;
+        line-height: 1.5;
+        display: block;
+    }
+    table tbody{
+        display: block;
+    }
+    th{
+        display: inline-block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    table tr td{
+        padding-left: 0;
+        display: block;
+    }
+    textarea{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    select{
+        width: 110px;
+    }
+    td input[type="text"]{
+        width: 100%;
+        box-sizing: border-box;;
+    }
+
+    ul.card-list >li {
+        border-top: solid 2px #16d0d8;
+        padding-bottom: 22px;
+    }
+    ul.card-list> li:after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+    .hotel-list {
+        display: none;
+    }
+    .card-list >li .name{
+        /*width: 100%;*/
+    }
+    .card-list >li .location{
+        margin:0 10px;
+        font-size: 10px;
+        width: auto;
+    }
+    .box .score{
+        position: absolute;
+        left: 8px;
+        z-index: 1;
+        bottom: 0;
+        width: 105px;
+        text-align: center;
+    }
+    .box .name{
+        width: auto;
+        margin-left: 0;
+    }
+    .box .Ci{
+        position: absolute;
+        width: auto;
+        right:10px;
+    }
+    .box .option{
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+    .abs-list{
+        top:40px;
+    }
+    a.text-orange{
+        display:inline;
+        padding: 0;
+    }
+
+    .hotel-list p {
+        float: left;
+    }
+    .hotel-list .name{
+        margin:0;
+        width:auto;
+    }
+    .card-list p,.hotel-list p, table ,.profile{
+        font-size: 14px;
+    }
+}

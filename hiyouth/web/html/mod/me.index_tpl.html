@@ -1,0 +1,75 @@
+<script type="text/html" id="list-tpl">
+
+    <% if ( data != undefined && data.length != 0 ){%>
+    <% for(var i =0,len=data.length;i < len;i++){ %>
+    <% var tpl = data[i]; %>
+    <li data-aid="<%= tpl['aid']%>" data-rid="<%= tpl['rid']%>" data-hid="<%= tpl['hid']%>"
+        data-sid="<%= tpl['schedule']%>">
+        <div class="portrait-70 fl bdr-227">
+            <a href="javascript:void(0);"><img src="<%= tpl['img']%>" alt="头像" title="点击进入商家详情"/></a>
+        </div>
+        <div class="card-left">
+            <p class="ell name" title="<%=tpl[' name ']%>">
+                <%=tpl["name"]%>
+            </p>
+            <p><span><%=tpl["time"]%></span>
+
+                <% if(tpl["schedule"]== 1001 || tpl["schedule"]== 1101){%>
+                <span class="text-gray">已落选</span>
+                <% }else if(tpl["schedule"]== 1000 || tpl["schedule"]== 1100 ){%>
+                <span class="text-theme">已发送</span>
+                <% }else if(tpl["schedule"]==2000){%>
+                <span class="text-theme">已通过</span>
+                <% }else if(tpl["schedule"]==2001){%>
+                <span class="text-gray">已取消</span>
+                <%}else if(tpl["schedule"]==3000 || tpl["schedule"]==3100){%>
+                <span class="text-red">待评价</span>
+                <%}else if(tpl["schedule"]==3010 || tpl["schedule"]==3110){%>
+                <span class="text-red">已评价</span>
+                <%}%>
+            </p>
+        </div>
+        <div class="card-center">
+            <p>联系方式</p>
+            <p title="<%=tpl['phone']%>">
+                <% var vvv  = tpl["phone"]; if(vvv){%>
+                <%if(vvv.sj){%>
+                <a href="javascript:void(0)" class="c-a"><img src="../../img/icons/phone.m.png" alt="手机"><span class="c-detail"><%=vvv.sj %></span></a>
+                <%}%>
+                <%if(vvv.wx){%>
+                <a href="javascript:void(0)" class="c-a"><img src="../../img/icons/weixin.m.png" alt="微信"><span class="c-detail"><%=vvv.wx %></span></a>
+                <%}%>
+                <%if(vvv.sj){%>
+                <a href="javascript:void(0)" class="c-a"><img src="../../img/icons/qq.m.png" alt="QQ"><span class="c-detail"><%=vvv.qq %></span></a>
+                <%}%>
+                <%}else{%>
+                :( 老板未公开或未填写
+                <%}%>
+            </p>
+        </div>
+        <div class="card-right">
+            <% var state=tpl["schedule"];%>
+            <%if(state== 1001 ||state== 1101 ){%>
+            <p><a href="javascript:void(0);" class="btn text-orange">不要气馁下次再来!</a></p>
+            <p><a href="javascript:void(0);" class="h-c-theme">删除</a></p>
+            <% }else if(state == 1000 || state == 1100){ %>
+            <p><a href="javascript:void(0);" class="btn text-theme h-c-theme">已发送</a></p>
+            <p><a href="javascript:void(0);" class="h-c-theme">撤回简历</a></p>
+            <% }else if (state == 2000){ %>
+            <p><a href="javascript:void(0);" class=" js-test btn btn-warn">结束工作</a></p>
+            <p><a href="javascript:void(0);" class="h-c-theme">取消出发</a></p>
+            <% }else if (state == 2001){ %>
+            <p><a href="javascript:void(0);" class=" js-test btn btn-warn">已取消</a></p>
+            <% }else if (state == 3000 || state == 3100){ %>
+            <p><a href="javascript:void(0);" class=" js-test btn btn-warn">评价</a></p>
+            <% }else if(state == 3110 || state == 3010 ){ %>
+            <p><a href="javascript:void(0);" class=" js-test btn btn-warn">已评价</a></p>
+            <% }
+            %>
+        </div>
+    </li>
+    <% } %>
+    <% }else { %>
+    <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+    <% } %>
+</script>

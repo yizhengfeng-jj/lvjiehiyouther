@@ -1,0 +1,1093 @@
+
+<meta charset="utf-8">
+<style>
+    #mask {
+        background-color: #000;
+        position: fixed;
+        z-index: 300;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    }
+
+    #popup .error {
+        color: red !important;
+        font-size: 12px;
+    }
+
+    .text-gray {
+        color: rgb(121, 124, 127);
+    }
+
+    .back-svg .left {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        z-index: -10;
+    }
+
+    .back-svg .right {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        z-index: -10;
+    }
+
+    #popup .left-up .left {
+        z-index: -5;
+    }
+
+    #popup .right-up .right {
+        z-index: -5;
+    }
+
+    #popup .left-up ~ .back-svg-tab .left a:before,
+    #popup .right-up ~ .back-svg-tab .right a:before {
+        content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAA/CAYAAABn/8O7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkQ5RTYwNUJGN0I0MTFFNThBMTZBQzQ0OEU5RDVDODgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkQ5RTYwNUNGN0I0MTFFNThBMTZBQzQ0OEU5RDVDODgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCRDlFNjA1OUY3QjQxMUU1OEExNkFDNDQ4RTlENUM4OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCRDlFNjA1QUY3QjQxMUU1OEExNkFDNDQ4RTlENUM4OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjtYKywAABdJSURBVHja7F0HeBz1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");
+        display: inline-block;
+        width: 160px;
+        height: 63px;
+        vertical-align: middle;
+    }
+
+    #popup .left-up ~ .back-svg-tab .left a:before {
+        margin-left: -26px;
+    }
+
+    #popup .right-up ~ .back-svg-tab .right a:before {
+        margin-left: 22px;
+    }
+
+    #popup .right-up ~ .back-svg-tab .left a,
+    #popup .left-up ~ .back-svg-tab .right a {
+        color: #545454;
+    }
+
+    #popup .right-up ~ .back-svg-tab .left a:hover,
+    #popup .left-up ~ .back-svg-tab .right a:hover {
+        color: #16d0d8;
+    }
+
+    .back-svg ~ .back-svg-tab .left li a,
+    .back-svg ~ .back-svg-tab .right li a {
+        display: inline-block;
+        width: 300px;
+        height: 66px;
+        line-height: 66px;
+        text-align: center;
+        color: #16d0d8;
+        font-size: 24px;
+    }
+
+    .back-svg ~ .back-svg-tab .right li a {
+        float: right;
+    }
+
+    .back-svg-tab ~ .log-reg-box {
+        padding: 60px 60px 49px;
+        margin-top: 30px;
+    }
+
+    #popup .btn {
+        padding: 0 33px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+        margin: 0 6px;
+        -webkit-transition: all .5s;
+        -o-transition: all .5s;
+        transition: all .5s;
+        font-size: 16px;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+
+    #popup {
+        display: none;
+    }
+
+    #popup p {
+        font-size: 16px;
+    }
+
+    #popup th {
+        width: 125px;
+    }
+
+    #popup td {
+        width: 300px;
+        text-align: left
+    }
+
+    #popup div input[type='text'],div input[type='password'] {
+        padding: 0 8px;
+        height: 36px;
+        font-size: 14px;
+        line-height: 36px;
+        box-sizing: border-box;
+        width: 300px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+    input[type='text']:focus, #popup textarea, #popup select, input[type='password']:focus {
+        border: 1px solid #14d0d9;
+        -webkit-box-shadow: 1px 2px 5px #14d0d9, -1px -2px 5px #14d0d9;
+        -moz-box-shadow: 1px 2px 5px #14d0d9, -1px -2px 5px #14d0d9;
+        box-shadow: 0 0 5px 0 #14d0d9;
+    }
+
+    #popup input.verify-code {
+        width: 120px;
+    }
+
+    #popup .pop-content {
+
+        overflow-x: hidden;
+
+        overflow-y: scroll;
+    }
+
+    #popup .wrap-box {
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        width: 600px;
+        height: 413px;
+        margin: auto;
+        z-index: 300;
+        font-size: 16px;
+    }
+
+    #popup th {
+        text-align: right;
+        padding-right: 10px;
+        line-height: 22px;
+        font-size: 22px;
+    }
+
+    #popup tr {
+        height: 16px;
+        line-height: 16px;
+    }
+
+    #popup td {
+        padding: 10px 0;
+        line-height: 16px;
+    }
+
+    .verify-img {
+        width: 132px;
+        height: 32px;
+        vertical-align: middle;
+    }
+
+    #popup table {
+        margin-bottom: 20px;
+    }
+
+    .third img {
+        width: 20px;
+        height: 20px;
+        vertical-align: -3px;
+    }
+
+    #popup p {
+        font-size: 16px;
+    }
+
+    #popup .more, .more:hover {
+        color: #16D0D8;
+        text-decoration: underline;
+    }
+
+    .err-info {
+        color: red;
+    }
+
+    .err-info h3 {
+        font-weight: 400;
+    }
+
+    .let-me-login, .forget-password {
+        color: rgb(121, 124, 127);
+        float: right;
+    }
+
+    .let-me-login:hover, .forget-password:hover {
+        color: #16D0D8;
+        text-decoration: underline;
+    }
+
+    #popup .btn-primary, #popup .btn-primary:hover {
+        display: inline-block;
+        color: #ffffff;
+        width: 245px;
+        /* padding: 20px; */
+        background-color: #16D0D8;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -ms-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+    }
+
+    #popup .btn-primary:active {
+        padding: 3px 6px 2px 8px;
+        border: 2px inset;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    #popup .callback-box .btn-primary, #popup .callback-box .btn-primary:hover {
+        width: 140px;
+    }
+
+    .step-2 p, .step-3 p {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .step-2 .let-me-login, .step-3 .let-me-login {
+        float: none;
+        position: relative;
+        left: -68px;
+    }
+
+    .info {
+        color: #16d0d8;
+
+    }
+
+    .tryAgain, .tryAgain:hover {
+        display: inline-block;
+        padding: 10px 13px;
+        color: #ffffff;
+        background-color: #16d0d8;
+        margin-left: 10px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+    .step-3 .email {
+        color: #16d0d8;
+        text-decoration: underline;
+    }
+
+    #popup .callback-box table {
+        margin: 0 auto;
+    }
+
+    #popup .callback-box th {
+        width: 135px;
+    }
+
+    #popup .wrap-box > .callback-box {
+        padding: 60px 49px 120px;
+        margin-top: 60px;
+    }
+
+    #popup tr .pd5 {
+        padding: 5px 0;
+    }
+</style>
+<div id="popup">
+    <div id="mask">
+    </div>
+
+
+    <div class="pop-content">
+        <div class="wrap-box">
+            <div class="back-svg left-up">
+                <div class="left">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGdCAYAAADOqw1GAAAdUklEQVR4Xu3dz2+d5ZkG4PczIzUwmcmgUlIJtSJCxR6BJo7KilnRrtg1f0GTRWc3UCS6mwWRuoMFLEsXDauBTcmsmGVmpMnaSCAgVZA1JsJ2QhLTQJpk4lN9NoEMP23nPM75zn1FqgSVz3Pe+3rO4uY9J8ddu+XP/oX3ftG60R9Go/YPt/7//pkAgQCBrlvsWjvZ1tuJlUOz/xGQWEQCBAiUCXQ3J+9/870/jEajI/2/P3L399qTf7+3/fPee9ojd+9p++6aKTuAwQQI7K7A0rXrrf9f/+d/Ln/aTn1ypZ26/On/O0TXtUutdSdGo+6l1fmHF3b3hJ6NAAECwxfYKFi3lqtf3Xdv++0D9w8/mQQECGxLoC9Zb1252l69uNbevnL1i8d23cmZ0ejY8vzcyW0N9MMECBAIFuj6twVHbfR6b3D8wQfak/v2BnOIToBAL9DfcL16Ya29fP5i+/jG+iZK1168Ntpz7NL8g5coESBAgMC3C3T733z3Yv+ZKzdXXioECHxZYO3Genv53IX2wspHmx2rawtXR3ueULK8VggQIPAdBev+hXdH/WeuXn/oxz5r5dVCgMDXCvRvHT619OHmW4ddd3L14OwTqAgQIEDgmwW6vmA9u//77Tc/vI8TAQIEvlGgv8167J0zG28Zdq07vDI/ewIXAQIECHy9wEbBev2hH7XH997DiAABAt8q0H8u6+ml5f4Wa3H14OwBXAQIECDwLQXr9KM/8fagVwgBAlsS+Ok777cPNr/m4ejq/NzxLT3IDxEgQCBMYOMGa+XgbFhscQkQ2KlA/3UOh88s9R94v3R1tOeAD7zvVNLjCBCYZgEFa5q3KxuBIoG+YH325aTHVufnnit6GmMJECAwWAEFa7Crc3ACd07ALdads/fMBAgMQ0DBGsaenJLAxAm4xZq4lTgQAQITJKBgTdAyHIXAkATcYg1pW85KgMBuCyhYuy3u+QhMkYBbrClapigECIxVQMEaK6dhBLIE3GJl7VtaAgS2LqBgbd3KTxIg8DUCbrG8LAgQIPBVAQXLq4IAgdsScIt1W3weTIDAlAooWFO6WLEI7KaAW6zd1PZcBAgMQUDBGsKWnJHAhAu4xZrwBTkeAQK7LqBg7Tq5JyQwnQJusaZzr1IRILAzAQVrZ24eRYDAlwTcYnlJECBA4AsBBcurgQCBsQnccot1dHV+7vjYBhtEgACBgQkoWANbmOMSmGSBm7dYresWVw/OHpjkszobAQIEKgUUrEpdswkECrjFCly6yAQIfEVAwfKiIEBgrAJvrF1uRxbPNrdYY2U1jACBgQkoWANbmOMSGILAT995v31w7Xp/VJ/FGsLCnJEAgbELKFhjJzWQAIFXL6y1p5eW3WJ5KRAgECugYMWuXnACtQJusWp9TSdAYLIFFKzJ3o/TERisgFuswa7OwQkQGIOAgjUGRCMIEPh6AbdYXhkECKQKKFipm5ebwC4IuMXaBWRPQYDARAooWBO5FociMD0CbrGmZ5eSECCwdQEFa+tWfpIAgR0I+Hb3HaB5CAECgxdQsAa/QgEITL7AzW9371r3zMr87IuTf2InJECAwO0JKFi35+fRBAhsQeDmLVbXtUtXR3sOXJp/8NIWHuZHCBAgMFgBBWuwq3NwAsMSuOV3FB5bnZ97blind1oCBAhsT0DB2p6XnyZAYIcCbrF2COdhBAgMUkDBGuTaHJrAMAXcYg1zb05NgMD2BRSs7Zt5BAECOxRwi7VDOA8jQGBwAgrW4FbmwASGLeAWa9j7c3oCBLYmoGBtzclPESAwJoGla9fbY++83/q/UdiN2qHl+bnFMY02hgABAhMjoGBNzCochECOwFNLy+21C2ut67pXVg7OHslJLikBAikCClbKpuUkMEECN2+x+iPNtHbALdYELcdRCBAYi4CCNRZGQwgQ2K6AW6ztivl5AgSGJKBgDWlbzkpgigTWbqy3x945M/r4xno309oTy/NzJ6conigECIQLKFjhLwDxCdxJgeeXz7cXVj5qretOrh6cfeJOnsVzEyBAYJwCCtY4Nc0iQGBbAv0t1hOnF9fPXrs+07Xu8Mr87IltDfDDBAgQmFABBWtCF+NYBFIEXr2w1p5eWu5vsRZXD84eSMktJwEC0y2gYE33fqUjMAiBn51ebG9fudq61j2zMj/74iAO7ZAECBD4FgEFy8uDAIE7LuBX6NzxFTgAAQJjFlCwxgxqHAECOxP45eLZ9p9rl1tr3Uur87O/3tkUjyJAgMBkCChYk7EHpyAQL9B/+Wj/gfc/31ifaW3m0Or8wwvxKAAIEBisgII12NU5OIHpE/C1DdO3U4kIpAooWKmbl5vABArc+rUNrbWjq/NzxyfwmI5EgACB7xRQsL6TyA8QILCbAm+sXW5HFs+2rmuXro72HLg0/+Cl3Xx+z0WAAIFxCChY41A0gwCBsQp8/oH3rp1YPTh3eKzDDSNAgMAuCChYu4DsKQgQ2J7Arb+n0De8b8/OTxMgMBkCCtZk7MEpCBD4ksCtbxV2o3ZoeX5uERIBAgSGIqBgDWVTzkkgUOCppeX22oW1/vNYCysH5w4FEohMgMBABRSsgS7OsQkkCPRvFR4+87+bv0an646vHJw9mpBbRgIEhi+gYA1/hxIQmGqBt65c3ShZH99Yb61rJ2ZG7RlvF071yoUjMBUCCtZUrFEIAtMtcGvJ6r++oXXtuZV/mntpulNLR4DAkAUUrCFvz9kJBAn0bxc+tfThZ7+vsG18Lms0mjnqV+oEvQhEJTAgAQVrQMtyVAIEWjt1+dP2r0vL7YNr1zc4+s9mdaPRMW8benUQIDBJAgrWJG3DWQgQ2JJAf5vV/97C35+/+MXPb34+66Xl+bmTWxrihwgQIFAooGAV4hpNgECtwNK16+135y62f7+4duPyjfW7Nm+02sKotZNtNPOKtw9r/U0nQOCbBRQsrw4CBAYv0N9ovXzuQvvd+Yvrf76xPvN5oK5bbG200LVuoa23hfW2/pXfa3ju0D/+1+ABBCBAYOIEFKyJW4kDESBwOwL9N8C/8fHl9t+XP/2/D69d/5vbmeWxBAgQ+CaB/ra89f/x1o0Wrq7veeXLv5hewfLaIUBgagX6r3d468pfWv9W4qlPrnxtzv5D8/4QIEDgtgS6bnFmNDp662dAFazbEvVgAgQIECBAIFHg5n/AvXbx442/3bzxp2svXhvtOdbfZilYia8KmQkQIECAAIGxCbx87mJ7fuX8xm+cuPlrvRSssfEaRIAAAQIECKQK9DdaPz+9+NlFVveMgpX6SpCbAAECBAgQGKtA//18L6x81H9djLcIxyprGAECBAgQIBAt8LPTi+3tK1ebG6zol4HwBAgQIECAwDgFPr/Fun/h3dHKwdlxzjaLAAECBAgQIBAp0P+NwsNnltxgRW5faAIECBAgQKBEoP/NEg+/9ScFq0TXUAIECBAgQCBWYP+b7ylYsdsXnAABAgQIECgRULBKWA0lQIAAAQIEkgUUrOTty06AAAECBAiUCChYJayGEiBAgAABAskCClby9mUnQIAAAQIESgQUrBJWQwkQIECAAIFkAQUrefuyEyBAgAABAiUCClYJq6EECBAgQIBAsoCClbx92QkQIECAAIESAQWrhNVQAgQIECBAIFlAwUrevuwECBAgQIBAiYCCVcJqKAECBAgQIJAsoGAlb192AgQIECBAoERAwSphNZQAAQIECBBIFlCwkrcvOwECBAgQIFAioGCVsBpKgAABAgQIJAsoWMnbl50AAQIECBAoEVCwSlgNJUCAAAECBJIFFKzk7ctOgAABAgQIlAgoWCWshhIgQIAAAQLJAgpW8vZlJ0CAAAECBEoEFKwSVkMJECBAgACBZAEFK3n7shMgQIAAAQIlAgpWCauhBAgQIECAQLKAgpW8fdkJECBAgACBEgEFq4TVUAIECBAgQCBZQMFK3r7sBAgQIECAQImAglXCaigBAgQIECCQLKBgJW9fdgIECBAgQKBEQMEqYTWUAAECBAgQSBZQsJK3LzsBAgQIECBQIqBglbAaSoAAAQIECCQLKFjJ25edAAECBAgQKBFQsEpYDSVAgAABAgSSBRSs5O3LToAAAQIECJQIKFglrIYSIECAAAECyQIKVvL2ZSdAgAABAgRKBBSsElZDCRAgQIAAgWQBBSt5+7ITIECAAAECJQIKVgmroQQIECBAgECygIKVvH3ZCRAgQIAAgRIBBauE1VACBAgQIEAgWUDBSt6+7AQIECBAgECJgIJVwmooAQIECBAgkCygYCVvX3YCBAgQIECgREDBKmE1lAABAgQIEEgWULCSty87AQIECBAgUCKgYJWwGkqAAAECBAgkCyhYyduXnQABAgQIECgRULBKWA0lQIAAAQIEkgUUrOTty06AAAECBAiUCChYJayGEiBAgAABAskCClby9mUnQIAAAQIESgQUrBJWQwkQIECAAIFkAQUrefuyEyBAgAABAiUCClYJq6EECBAgQIBAsoCClbx92QkQIECAAIESAQWrhNVQAgQIECBAIFlAwUrevuwECBAgQIBAiYCCVcJqKAECBAgQIJAsoGAlb192AgQIECBAoERAwSphNZQAAQIECBBIFlCwkrcvOwECBAgQIFAioGCVsBpKgAABAgQIJAsoWMnbl50AAQIECBAoEVCwSlgNJUCAAAECBJIFFKzk7ctOgAABAgQIlAgoWCWshhIgQIAAAQLJAgpW8vZlJ0CAAAECBEoEFKwSVkMJECBAgACBZAEFK3n7shMgQIAAAQIlAgpWCauhBAgQIECAQLKAgpW8fdkJECBAgACBEgEFq4TVUAIECBAgQCBZQMFK3r7sBAgQIECAQImAglXCaigBAgQIECCQLKBgJW9fdgIECBAgQKBEQMEqYTWUAAECBAgQSBZQsJK3LzsBAgQIECBQIqBglbAaSoAAAQIECCQLKFjJ25edAAECBAgQKBFQsEpYDSVAgAABAgSSBRSs5O3LToAAAQIECJQIKFglrIYSIECAAAECyQIKVvL2ZSdAgAABAgRKBBSsElZDCRAgQIAAgWQBBSt5+7ITIECAAAECJQIKVgmroQQIECBAgECygIKVvH3ZCRAgQIAAgRIBBauE1VACBAgQIEAgWUDBSt6+7AQIECBAgECJgIJVwmooAQIECBAgkCygYCVvX3YCBAgQIECgREDBKmE1lAABAgQIEEgWULCSty87AQIECBAgUCKgYJWwGkqAAAECBAgkCyhYyduXnQABAgQIECgRULBKWA0lQIAAAQIEkgUUrOTty06AAAECBAiUCChYJayGEiBAgAABAskCClby9mUnQIAAAQIESgQUrBJWQwkQIECAAIFkAQUrefuyEyBAgAABAiUCClYJq6EECBAgQIBAsoCClbx92QkQIECAAIESAQWrhNVQAgQIECBAIFlAwUrevuwECBAgQIBAiYCCVcJqKAECBAgQIJAsoGAlb192AgQIECBAoERAwSphNZQAAQIECBBIFlCwkrcvOwECBAgQIFAioGCVsBpKgAABAgQIJAsoWMnbl50AAQIECBAoEVCwSlgNJUCAAAECBJIFFKzk7ctOgAABAgQIlAgoWCWshhIgQIAAAQLJAgpW8vZlJ0CAAAECBEoEFKwSVkMJECBAgACBZAEFK3n7shMgQIAAAQIlAgpWCauhBAgQIECAQLKAgpW8fdkJECBAgACBEgEFq4TVUAIECBAgQCBZQMFK3r7sBAgQIECAQImAglXCaigBAgQIECCQLKBgJW9fdgIECBAgQKBEQMEqYTWUAAECBAgQSBZQsJK3LzsBAgQIECBQIqBglbAaSoAAAQIECCQLKFjJ25edAAECBAgQKBFQsEpYDSVAgAABAgSSBRSs5O3LToAAAQIECJQIKFglrIYSIECAAAECyQIKVvL2ZSdAgAABAgRKBBSsElZDCRAgQIAAgWQBBSt5+7ITIECAAAECJQIKVgmroQQIECBAgECygIKVvH3ZCRAgQIAAgRIBBauE1VACBAgQIEAgWUDBSt6+7AQIECBAgECJgIJVwmooAQIECBAgkCygYCVvX3YCBAgQIECgREDBKmE1lAABAgQIEEgWULCSty87AQIECBAgUCKgYJWwGkqAAAECBAgkCyhYyduXnQABAgQIECgRULBKWA0lQIAAAQIEkgUUrOTty06AAAECBAiUCChYJayGEiBAgAABAskCClby9mUnQIAAAQIESgQUrBJWQwkQIECAAIFkAQUrefuyEyBAgAABAiUCClYJq6EECBAgQIBAsoCClbx92QkQIECAAIESAQWrhNVQAgQIECBAIFlAwUrevuwECBAgQIBAiYCCVcJqKAECBAgQIJAsoGAlb192AgQIECBAoERAwSphNZQAAQIECBBIFlCwkrcvOwECBAgQIFAioGCVsBpKgAABAgQIJAsoWMnbl50AAQIECBAoEVCwSlgNJUCAAAECBJIFFKzk7ctOgAABAgQIlAgoWCWshhIgQIAAAQLJAgpW8vZlJ0CAAAECBEoEFKwSVkMJECBAgACBZAEFK3n7shMgQIAAAQIlAgpWCauhBAgQIECAQLKAgpW8fdkJECBAgACBEgEFq4TVUAIECBAgQCBZQMFK3r7sBAgQIECAQImAglXCaigBAgQIECCQLKBgJW9fdgIECBAgQKBEQMEqYTWUAAECBAgQSBZQsJK3LzsBAgQIECBQIqBglbAaSoAAAQIECCQLKFjJ25edAAECBAgQKBFQsEpYDSVAgAABAgSSBRSs5O3LToAAAQIECJQIKFglrIYSIECAAAECyQIKVvL2ZSdAgAABAgRKBBSsElZDCRAgQIAAgWQBBSt5+7ITIECAAAECJQIKVgmroQQIECBAgECygIKVvH3ZCRAgQIAAgRIBBauE1VACBAgQIEAgWUDBSt6+7AQIECBAgECJgIJVwmooAQIECBAgkCygYCVvX3YCBAgQIECgREDBKmE1lAABAgQIEEgWULCSty87AQIECBAgUCKgYJWwGkqAAAECBAgkCyhYyduXnQABAgQIECgRULBKWA0lQIAAAQIEkgUUrOTty06AAAECBAiUCChYJayGEiBAgAABAskCClby9mUnQIAAAQIESgQUrBJWQwkQIECAAIFkAQUrefuyEyBAgAABAiUCClYJq6EECBAgQIBAsoCClbx92QkQIECAAIESAQWrhNVQAgQIECBAIFlAwUrevuwECBAgQIBAiYCCVcJqKAECBAgQIJAsoGAlb192AgQIECBAoERAwSphNZQAAQIECBBIFlCwkrcvOwECBAgQIFAioGCVsBpKgAABAgQIJAsoWMnbl50AAQIECBAoEVCwSlgNJUCAAAECBJIFFKzk7ctOgAABAgQIlAgoWCWshhIgQIAAAQLJAgpW8vZlJ0CAAAECBEoEFKwSVkMJECBAgACBZAEFK3n7shMgQIAAAQIlAgpWCauhBAgQIECAQLKAgpW8fdkJECBAgACBEgEFq4TVUAIECBAgQCBZQMFK3r7sBAgQIECAQImAglXCaigBAgQIECCQLKBgJW9fdgIECBAgQKBEQMEqYTWUAAECBAgQSBZQsJK3LzsBAgQIECBQIqBglbAaSoAAAQIECCQLKFjJ25edAAECBAgQKBFQsEpYDSVAgAABAgSSBRSs5O3LToAAAQIECJQIKFglrIYSIECAAAECyQIKVvL2ZSdAgAABAgRKBBSsElZDCRAgQIAAgWQBBSt5+7ITIECAAAECJQIKVgmroQQIECBAgECygIKVvH3ZCRAgQIAAgRIBBauE1VACBAgQIEAgWUDBSt6+7AQIECBAgECJgIJVwmooAQIECBAgkCygYCVvX3YCBAgQIECgREDBKmE1lAABAgQIEEgWULCSty87AQIECBAgUCKgYJWwGkqAAAECBAgkCyhYyduXnQABAgQIECgRULBKWA0lQIAAAQIEkgUUrOTty06AAAECBAiUCChYJayGEiBAgAABAskCClby9mUnQIAAAQIESgQUrBJWQwkQIECAAIFkAQUrefuyEyBAgAABAiUCClYJq6EECBAgQIBAsoCClbx92QkQIECAAIESAQWrhNVQAgQIECBAIFlAwUrevuwECBAgQIBAiYCCVcJqKAECBAgQIJAsoGAlb192AgQIECBAoERAwSphNZQAAQIECBBIFlCwkrcvOwECBAgQIFAioGCVsBpKgAABAgQIJAsoWMnbl50AAQIECBAoEVCwSlgNJUCAAAECBJIFFKzk7ctOgAABAgQIlAgoWCWshhIgQIAAAQLJAgpW8vZlJ0CAAAECBEoEFKwSVkMJECBAgACBZAEFK3n7shMgQIAAAQIlAgpWCauhBAgQIECAQLKAgpW8fdkJECBAgACBEgEFq4TVUAIECBAgQCBZQMFK3r7sBAgQIECAQImAglXCaigBAgQIECCQLKBgJW9fdgIECBAgQKBEQMEqYTWUAAECBAgQSBZQsJK3LzsBAgQIECBQIqBglbAaSoAAAQIECCQLKFjJ25edAAECBAgQKBFQsEpYDSVAgAABAgSSBRSs5O3LToAAAQIECJQIKFglrIYSIECAAAECyQIKVvL2ZSdAgAABAgRKBBSsElZDCRAgQIAAgWQBBSt5+7ITIECAAAECJQIKVgmroQQIECBAgECygIKVvH3ZCRAgQIAAgRIBBauE1VACBAgQIEAgWUDBSt6+7AQIECBAgECJgIJVwmooAQIECBAgkCygYCVvX3YCBAgQIECgREDBKmE1lAABAgQIEEgWULCSty87AQIECBAgUCKgYJWwGkqAAAECBAgkCyhYyduXnQABAgQIECgRULBKWA0lQIAAAQIEkgUUrOTty06AAAECBAiUCChYJayGEiBAgAABAskCClby9mUnQIAAAQIESgQUrBJWQwkQIECAAIFkAQUrefuyEyBAgAABAiUCClYJq6EECBAgQIBAsoCClbx92QkQIECAAIESAQWrhNVQAgQIECBAIFlAwUrevuwECBAgQIBAiYCCVcJqKAECBAgQIJAsoGAlb192AgQIECBAoERAwSphNZQAAQIECBBIFlCwkrcvOwECBAgQIFAioGCVsBpKgAABAgQIJAsoWMnbl50AAQIECBAoEVCwSlgNJUCAAAECBJIFFKzk7ctOgAABAgQIlAgoWCWshhIgQIAAAQLJAgpW8vZlJ0CAAAECBEoEFKwSVkMJECBAgACBZAEFK3n7shMgQIAAAQIlAgpWCauhBAgQIECAQLKAgpW8fdkJECBAgACBEgEFq4TVUAIECBAgQCBZQMFK3r7sBAgQIECAQImAglXCaigBAgQIECCQLKBgJW9fdgIECBAgQKBEQMEqYTWUAAECBAgQSBZQsJK3LzsBAgQIECBQIqBglbAaSoAAAQIECCQLKFjJ25edAAECBAgQKBFQsEpYDSVAgAABAgSSBRSs5O3LToAAAQIECJQIKFglrIYSIECAAAECyQIKVvL2ZSdAgAABAgRKBD4vWKcf/Unbd9dMyZMYSoAAAQIECBBIEVi7sd4efutPrbt/4d3R6w/9qD2+956U7HISIECAAAECBEoETl3+tB0+s7RZsJ7d//32mx/eV/JEhhIgQIAAAQIEUgSeXz7fXlj5aLNgPXr399ofH/qxtwlTti8nAQIECBAgMHaB/u3Bn59ebEvXrrdu/5vvXhqN2r5f3Xdv++0D94/9yQwkQIAAAQIECCQI/NvZ1fb78xdb17W1bv/Ce78YtdHrffDjDz7Qnty3N8FARgIECBAgQIDA2ATeWLvcjiye3ZjXte5w1//D/jffOz4ajX7Z//O//ODe9uz++7xdODZygwgQIECAAIFpFejfFnxh5Xx7+dzFzyJ2L63Oz/56o2B9uWT1n8l6ct/ftcf/9u72yN17lK1pfVXIRYAAAQIECGxboC9Vb1/5Szv1yZX26oW1jc9cbf7ZLFebt1i3/OnfLmzd6Hj/maxtP5sHECBAgAABAgQCBfrPXLVRd2RlfvbEzfh/BSaI2ni/yiyHAAAAAElFTkSuQmCC">
+                </div>
+                <div class="right">
+                    <img src="data:image/png;base64,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BOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBRSselMTCRAgQIAAgXABBSt8AcQnQIAAAQIE6gUUrHpTEwkQIECAAIFwAQUrfAHEJ0CAAAECBOoFFKx6UxMJECBAgACBcAEFK3wBxCdAgAABAgTqBe4UrA+e+ts2PztTfwUTCRAgQIAAAQJBAjf+utFO/OZ3rVtYXesvHV9uZ+YeDoovKgECBAgQIECgXuDdm5+3Zz785HbBennx0fbK0tH6q5hIgAABAgQIEAgS+Mnvr7fXr/3xdsF66uCB9ssTK0HxRSVAgAABAgQI1AoMLw/+wwcft0/+9/9at3h17U993+ZfOHq4vXZsofZKphEgQIAAAQIEQgR+/Okf2k+vf9a6rt3oFlfXz/etvzRkv7hyrJ2bnwthEJMAAQIECBAgUCPwzo2b7fmPP90c1rXumW74m8Wr6xf7vn9u+PsXHzvcXl486k8V1nibQoAAAQIECEyxwPCy4OvXrrd//a/PbperrvvZtadPPr9ZsL5esob3ZJ2b/347872D7cmDDylbU7wYohEgQIAAAQLfTWAoVe9/cau9++cv2s//+8bme67uLle3n2Ld9TW8XNi6/uLwnqzvdinfTYAAAQIECBAIFei6/+j69tK10yd/sSXw/3SqNzr5SPmtAAAAAElFTkSuQmCC">
+                </div>
+            </div>
+            <div class="back-svg-tab">
+                <div class="log-reg-box hide">
+                    <ul class="left fl">
+                        <li class="step-0 hide">
+                            <a href="javascript:void(0);"> 个人登录</a>
+                        </li>
+                        <li class="step-1 hide">
+                            <a href="javascript:void(0);"> 个人注册</a>
+                        </li>
+                        <li class="step-2 hide">
+                            <a href="javascript:void(0);"> 手机绑定</a>
+                        </li>
+                        <li class="step-3 hide">
+                            <a href="javascript:void(0);"> 手机绑定</a>
+                        </li>
+                    </ul>
+                    <ul class="right fl">
+                        <li class="step-0 hide">
+                            <a href="javascript:void(0);">商家登录</a>
+                        </li>
+                        <li class="step-1 hide">
+                            <a href="javascript:void(0);">商家注册</a>
+                        </li>
+                        <li class="step-2 hide">
+                            <a href="javascript:void(0);">邮箱绑定</a>
+                        </li>
+                        <li class="step-3 hide">
+                            <a href="javascript:void(0);">邮箱绑定</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="callback-box hide">
+                    <ul class="left fl">
+                        <li class="callback-content hide">
+                            <a href="javascript:void(0);"> 意见反馈</a>
+                        </li>
+                        <li class="report-content hide">
+                            <a href="javascript:void(0);"> 举报</a>
+                        </li>
+
+                    </ul>
+                    <ul class="right fl">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="log-reg-box hide">
+                <ul>
+                    <li class="step-0 hide">
+
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th>账号:</th>
+                                <td><input type="text" name="username" placeholder="输入11位手机号码或邮箱账号" id="l-username">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>密码:</th>
+                                <td><input type="password" name="password" placeholder="输入密码(6-18位数字或字母)"
+                                           id="l-password">
+                                </td>
+                            </tr>
+                            <tr class="l-err-info hide">
+                                <th></th>
+                                <td class="pd5"><b class="error">密码错误! -- $('.err-info').hide()</b></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="pd5">
+                                    <p>
+                                        <a href="javascript:void(0);" class="more">没有账号|注册</a>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <p class="text-gray third" >第三方登录:
+                                        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=token&client_id=101308377&redirect_uri=http%3A%2F%2Fwww.hiyouther.com/html/mod/qqLink.html&scope=get_user_info"  class="js-qq">
+                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAELUlEQVRIS6VWX0xbVRj/nXsrbQkGmY6BIAVcN4HF2SfAwZbMhw1LAmucJgSeZnzgiRcD8YVMFiHR8EACCQvEJ4MBI+hE4vBPSDYblo4GBB5UyKAUEEmMsbS37b3nM+ds7eh6YRhPcv+c2+/7ft/3O+f7nTI8GkT0OYB3EvP/+fyCMXZVxGDiRkQGAOWwoEQEzrk0URQFjEnXQ10YYwojolEikmhmwzAMDA4OoqurCxaLRZrouo7JyUm4XK6nAU0xzjkdFrykpCSZ+ZN2mqZhe3s7CWwW50AAQUlhYeHTMhT0IhAISNqODCCcampqsLa2Jn2ysrKwvLyMgoICOQ8GgygvL0coFJLz2tpajIyMmAMYhpFGkQAoKipKOmxsbCA/Px/Dw8MIh8Pwer3o7e1NAiaqMFt4ZgawubmJysrKFIDs7GwMDQ1hd3cXra2tkhpBYWIsLCwgJycnrQpTgJmZGTQ3NyeNRbDp6duou3xJbuyvv/oGb7rdKeszNjaGqqqqdABd19Mo8vl88Hg80rg4T8Wdj+Ni88PgDNwgKJyDMUL1+1YEd3Vp98P303CeOn0EACLsnS/BKw+4iIn7fRzBxQjOnssEFAYyCDxOWPJFcLzMjqo2BoKK2Zw95Pt3gCcakMXj8ZQKiHOELpRC4YRLW4SAweQWXPlUx80P/gAIuHbjBJzvZshYZ1Qdg5l7IAJenP8zbVunAAium5qawO//jJsvkNQRlQi+GPBZWMUvmgKR76tWA80ZcZxWdegcMIjwXsiGk/Ue9PX1pdCUBlBaWio712qzwX/xDGL+WSFWEA0vEkhcXLwzBrWwGLW//g0tEnlY6cpKStOxWCyWpGh+fh4NDQ0yg4qKCnx55SJ2Bz/BRkyH66N+aN9NgAwD1jfqkXnZA9gzAVVFY2Mj5ubmpN/4+LjUqMRIAXC73VhaWpK/5ebm4sfXTyHu/QkhTii6twGmPhQ7MUQliWd1dTW2trbkvKysDFNTU48BotFosoL29naMjo7C6XRicXERv127gtjtCXCm4Lh3DdgHsB8kLy9PSovY3nV1dRgYGDAHEFm1tbVJGRAgfr8fzx07JvIFDhBdoagi69XVVXR2dqKjowN2u90cYP/y9/f3o6enRwreQUopzgqHw4Hu7m60tLSkNZn4wDRNMz0PLHdP4t7vHFevE9bWA/KQ2c+/OHyKHS9h4rqCsw4Gfn7liABEUGcKAMUKRWUQWju7TPDc4Mh+Pl9W89dOELc+VOFyQjakHDwO40IgvZM1TRsD8NZ++AfrQRT4XLCfeFZ2qLit39nD3tuzcj0yx2rgOGeVwUQ3R3b+wfprPrxc8ljiH8Wbkie3pmmmh75hxBGNaLA8kyEbL7E1he5Hoxr0WAxWmxWqJcOMHrLZbEryr0E4HL7FGKs3JfI/fmSMfWuz2dzC7V8SggxuB2wILQAAAABJRU5ErkJggg==">
+                                        </a>
+                                        <a href="javascript:void(0);" class="js-weixin hide">
+                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADIUlEQVRIS7WVy08TURTGvzPTlpaWlkItD0HCy6ggiAkQVDAhxkfcEGOMK9YsjNHEoIlCXOBCEyMLdeXKP0BFJQiEEMNDngoImKCUEJAgSOVRCVQ619xbSjO8WhXPYmbuzL3f75zvPoawGtaBPa0E5Pna/3Znnc60sRyuQfxi7Y9TABLPOxeM/Ugfl8jaF9cGotydE/YrMWI9FN4Xx/6HuE+Twns2B2hJi0fx93HeWgQwwM3cKBm7guezr0BeZ4MKsnzYraqAMYbRjEFYZPOmQgpTUDp+C09mngYJ6I5dA/DMvmeNQiY54OC62QZccBQH7EfmTj/ga9YQTLIRDAwpXWmoS6tGsiFRiPB3FweLkWpMRUVCuXhn7LBDI2m3hVBYe4yoYIWtwJUzCYkkcBusnfG4FnMZZfHXvQDGoG+zIFQ2w5k9BiLCkrIEe1fS9gDTu2gB4AKuvMm1zh7m2WAVBytguDFUhseTlTCHxsK1MgeJtKLCzYJMLVHiiwwJs0cmtsyGJ3DHcRdno84gw5iugvNkZn45kdSVvmFhkLHJLgBuxY3lfKcofX3w7G5/rkB5yk3IJGF9dbzNreVJhDXHqM4ECn3rBfCYPzYBWdq4grjA8KIDe42pWPa4YWtJwPTREehlvYBZm+JRn1mFXEu2gJiaotdyJEPjLtUynT8+scH7SsdDXEosgYY0wuvehY/IDDso7ODtftcg0k0HRJvPk64xAjpJJyBkaLCpZocY4CqcUlm1rykLn/LfB72DqVYLgzbcC9DXRap3MhgWT0zj29KUKD9aH4V7ww9QmnJVVBAouEVyvRkhFOIFhNRGqAB5lhy0O9ugyJJKa6RgADF6v7dbgTjAUG/zz4GuRg3YaiC37ufpqW2PEe6/4U0kQP7kSFdtDf64Zgr6CjqRYkoWy9UXXJhPcGHzSbQudKtyJO3r8OABq0OJMezR2pFo3I/xRQe+uMdgk80YPTUMY419HeDlnwO23u6+n7C/B2mqzB1glB1odfzVd0KfOBfkFxZ+hgX/mwqGRmCeojlpTVR6Zu4m4HAwYwP1YWC9yrmFQ7zfb3wIJWaX8OKaAAAAAElFTkSuQmCC">
+                                        </a>
+                                        <a href="javascript:void(0);" class="js-weibo hide">
+                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADtElEQVRIS62Vf0jcdRjHX5/vnfPXqadLhzkaMZiBZowYmUvGRp0/6o/1w8KCZYOkoCLCNSEpmQvL/mhFfwRtfxiJrRbhgpv0h5uWjTYSpek6nc155rYU47ZLZ+d9n/h+zr7XeTe2XA/cfT+f5/k8z/v5+fkolik80/m5gqf+2d/SVzhi5NXWWDaU9Wf+3hEGjFsyGq8sRt4zhpLL7V8IaLRVkRkGpUAl8k+OKfPSQVmVYUtp9jxqxBtVT3Yh99UBUZPKvPjx6gF0ki3PBcb6UFODOumy7WUbVJnTH90YYCYI3l+gshDWZcQErAYOI0lpUPyw5qvjHyLJabC1PrI3f3v/+gDBRWT7wViDJ18EZzTf6odDsBAAMZEdr4J/ADXWhzy4R0emzKl3EwKYX53FbO2LK4+jbzcqLQnCgoz/gSpcCyKong8gKRUpfwH17TvIA/WQ5kaZ/v1xAOEuH0st3yVoPHDu28bSW722TERI+el5ON2JmvMjFXtR3a1I6S5w344yL7wZA2DOLTD/UOd/aizXwG5YDIIoSElHeVuRqkY9ZsqcaLQBLHlg86exxq3wU5JRmZnIwgISDC7L9YzqPLsHno3V+esarElZLvL512yA4NunuHZkNCJwucg+9T2O/Pz4aMJh5krLCZ8b1zLHhkyyPqvCcCXFnVXy60s2wMV7OnUfu15vIOMNK0SYnp6mtraWQCBAW1sbHo/HNjL/ySECDXvt/br+Gox0Z2zXybn6CIChmCw5rD0uGB3RrLq6Otrb22MUysrK6O/vt3mTaVngiLRt+s47Wdu8ZQXA2HMawAyGmCjrYsPUBRw52ZE0WXfMMnm9XqqrqyNZl2hf+DdvIeTzaX5OQwnuXZtWAIw+HTmtFL7ir9k4OYEzL5fZ2Vlyc3O1MetnGNHh+jeAz5kCToeehcIzjyaoga/Gdme4qAuH281dM5ftCIaGhujo6ND5t6iiooLu7m69vtJ1FH/Nk3q9/r17yaoqSABwdqcNsDj1J77K46RvLWNjby+hUEhHYRXYoqamJlpaWvR6umEPswcORIzvKyHnsTvijOvEyEh1zKAt+ucZqbSuCCHD4yG/ZT+pxUVIOMzC4CCXmpu52tOjU+rMXkPRie0YjmitVqIoGfYkvIuunp5j/JUhlq6ErHmMFBfBkepgfWMhtz1eENMECd3XEQzvuPF1fT3tm+ArOVP+JfDETZxdxRF1TMcuP99vPaz/86Mvou4+adjVkaHSb1DyyCrcTKTiVSU/6ifub7QgYG+VM3uXAAAAAElFTkSuQmCC">
+                                        </a>
+                                        <a href="javascript:void(0);" class="forget-password">忘记密码</a></p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="btn"><a href="javascript:void(0);" class="btn btn-primary">登录</a></p>
+                    </li>
+                    <li class="step-1 hide">
+                        <p class="text-theme" style="text-align: center;">建议店长使用手机注册,以便收到义工报名消息.</p>
+                        <table>
+                            <colgroup>
+                                <col style="width: 100px;">
+                                <col style="width: 300px;">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>用户名:</th>
+                                <td><input type="text" name="username" placeholder="请输入11位手机号码或邮箱账号" id="r-username">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>密码:</th>
+                                <td><input type="password" id="r-password"></td>
+                            </tr>
+                            <tr>
+                                <th>确认密码:</th>
+                                <td><input type="password" id="r-password-2"></td>
+                            </tr>
+                            <tr class="r-err-info hide">
+                                <th></th>
+                                <td class="pd5"><b class="error">密码错误! -- $('.err-info').hide()</b></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="pd5">
+                                    <p>
+                                        <input type="checkbox" id="r-agree">同意《用户服务协议》<a
+                                            href="javascript:void(0);" class="more">点击查看详情</a>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td class="pd5"><p class="text-gray third">第三方注册:
+                                    <a href="https://graph.qq.com/oauth2.0/authorize?response_type=token&client_id=101308377&redirect_uri=http%3A%2F%2Fwww.hiyouther.com/html/mod/qqLink.html&scope=get_user_info"   class="js-qq"><img
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAELUlEQVRIS6VWX0xbVRj/nXsrbQkGmY6BIAVcN4HF2SfAwZbMhw1LAmucJgSeZnzgiRcD8YVMFiHR8EACCQvEJ4MBI+hE4vBPSDYblo4GBB5UyKAUEEmMsbS37b3nM+ds7eh6YRhPcv+c2+/7ft/3O+f7nTI8GkT0OYB3EvP/+fyCMXZVxGDiRkQGAOWwoEQEzrk0URQFjEnXQ10YYwojolEikmhmwzAMDA4OoqurCxaLRZrouo7JyUm4XK6nAU0xzjkdFrykpCSZ+ZN2mqZhe3s7CWwW50AAQUlhYeHTMhT0IhAISNqODCCcampqsLa2Jn2ysrKwvLyMgoICOQ8GgygvL0coFJLz2tpajIyMmAMYhpFGkQAoKipKOmxsbCA/Px/Dw8MIh8Pwer3o7e1NAiaqMFt4ZgawubmJysrKFIDs7GwMDQ1hd3cXra2tkhpBYWIsLCwgJycnrQpTgJmZGTQ3NyeNRbDp6duou3xJbuyvv/oGb7rdKeszNjaGqqqqdABd19Mo8vl88Hg80rg4T8Wdj+Ni88PgDNwgKJyDMUL1+1YEd3Vp98P303CeOn0EACLsnS/BKw+4iIn7fRzBxQjOnssEFAYyCDxOWPJFcLzMjqo2BoKK2Zw95Pt3gCcakMXj8ZQKiHOELpRC4YRLW4SAweQWXPlUx80P/gAIuHbjBJzvZshYZ1Qdg5l7IAJenP8zbVunAAium5qawO//jJsvkNQRlQi+GPBZWMUvmgKR76tWA80ZcZxWdegcMIjwXsiGk/Ue9PX1pdCUBlBaWio712qzwX/xDGL+WSFWEA0vEkhcXLwzBrWwGLW//g0tEnlY6cpKStOxWCyWpGh+fh4NDQ0yg4qKCnx55SJ2Bz/BRkyH66N+aN9NgAwD1jfqkXnZA9gzAVVFY2Mj5ubmpN/4+LjUqMRIAXC73VhaWpK/5ebm4sfXTyHu/QkhTii6twGmPhQ7MUQliWd1dTW2trbkvKysDFNTU48BotFosoL29naMjo7C6XRicXERv127gtjtCXCm4Lh3DdgHsB8kLy9PSovY3nV1dRgYGDAHEFm1tbVJGRAgfr8fzx07JvIFDhBdoagi69XVVXR2dqKjowN2u90cYP/y9/f3o6enRwreQUopzgqHw4Hu7m60tLSkNZn4wDRNMz0PLHdP4t7vHFevE9bWA/KQ2c+/OHyKHS9h4rqCsw4Gfn7liABEUGcKAMUKRWUQWju7TPDc4Mh+Pl9W89dOELc+VOFyQjakHDwO40IgvZM1TRsD8NZ++AfrQRT4XLCfeFZ2qLit39nD3tuzcj0yx2rgOGeVwUQ3R3b+wfprPrxc8ljiH8Wbkie3pmmmh75hxBGNaLA8kyEbL7E1he5Hoxr0WAxWmxWqJcOMHrLZbEryr0E4HL7FGKs3JfI/fmSMfWuz2dzC7V8SggxuB2wILQAAAABJRU5ErkJggg=="></a>
+                                    <a href="javascript:void(0);" class="js-weixin hide"><img
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADIUlEQVRIS7WVy08TURTGvzPTlpaWlkItD0HCy6ggiAkQVDAhxkfcEGOMK9YsjNHEoIlCXOBCEyMLdeXKP0BFJQiEEMNDngoImKCUEJAgSOVRCVQ619xbSjO8WhXPYmbuzL3f75zvPoawGtaBPa0E5Pna/3Znnc60sRyuQfxi7Y9TABLPOxeM/Ugfl8jaF9cGotydE/YrMWI9FN4Xx/6HuE+Twns2B2hJi0fx93HeWgQwwM3cKBm7guezr0BeZ4MKsnzYraqAMYbRjEFYZPOmQgpTUDp+C09mngYJ6I5dA/DMvmeNQiY54OC62QZccBQH7EfmTj/ga9YQTLIRDAwpXWmoS6tGsiFRiPB3FweLkWpMRUVCuXhn7LBDI2m3hVBYe4yoYIWtwJUzCYkkcBusnfG4FnMZZfHXvQDGoG+zIFQ2w5k9BiLCkrIEe1fS9gDTu2gB4AKuvMm1zh7m2WAVBytguDFUhseTlTCHxsK1MgeJtKLCzYJMLVHiiwwJs0cmtsyGJ3DHcRdno84gw5iugvNkZn45kdSVvmFhkLHJLgBuxY3lfKcofX3w7G5/rkB5yk3IJGF9dbzNreVJhDXHqM4ECn3rBfCYPzYBWdq4grjA8KIDe42pWPa4YWtJwPTREehlvYBZm+JRn1mFXEu2gJiaotdyJEPjLtUynT8+scH7SsdDXEosgYY0wuvehY/IDDso7ODtftcg0k0HRJvPk64xAjpJJyBkaLCpZocY4CqcUlm1rykLn/LfB72DqVYLgzbcC9DXRap3MhgWT0zj29KUKD9aH4V7ww9QmnJVVBAouEVyvRkhFOIFhNRGqAB5lhy0O9ugyJJKa6RgADF6v7dbgTjAUG/zz4GuRg3YaiC37ufpqW2PEe6/4U0kQP7kSFdtDf64Zgr6CjqRYkoWy9UXXJhPcGHzSbQudKtyJO3r8OABq0OJMezR2pFo3I/xRQe+uMdgk80YPTUMY419HeDlnwO23u6+n7C/B2mqzB1glB1odfzVd0KfOBfkFxZ+hgX/mwqGRmCeojlpTVR6Zu4m4HAwYwP1YWC9yrmFQ7zfb3wIJWaX8OKaAAAAAElFTkSuQmCC"></a>
+                                    <a href="javascript:void(0);" class="js-weibo hide"><img
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADtElEQVRIS62Vf0jcdRjHX5/vnfPXqadLhzkaMZiBZowYmUvGRp0/6o/1w8KCZYOkoCLCNSEpmQvL/mhFfwRtfxiJrRbhgpv0h5uWjTYSpek6nc155rYU47ZLZ+d9n/h+zr7XeTe2XA/cfT+f5/k8z/v5+fkolik80/m5gqf+2d/SVzhi5NXWWDaU9Wf+3hEGjFsyGq8sRt4zhpLL7V8IaLRVkRkGpUAl8k+OKfPSQVmVYUtp9jxqxBtVT3Yh99UBUZPKvPjx6gF0ki3PBcb6UFODOumy7WUbVJnTH90YYCYI3l+gshDWZcQErAYOI0lpUPyw5qvjHyLJabC1PrI3f3v/+gDBRWT7wViDJ18EZzTf6odDsBAAMZEdr4J/ADXWhzy4R0emzKl3EwKYX53FbO2LK4+jbzcqLQnCgoz/gSpcCyKong8gKRUpfwH17TvIA/WQ5kaZ/v1xAOEuH0st3yVoPHDu28bSW722TERI+el5ON2JmvMjFXtR3a1I6S5w344yL7wZA2DOLTD/UOd/aizXwG5YDIIoSElHeVuRqkY9ZsqcaLQBLHlg86exxq3wU5JRmZnIwgISDC7L9YzqPLsHno3V+esarElZLvL512yA4NunuHZkNCJwucg+9T2O/Pz4aMJh5krLCZ8b1zLHhkyyPqvCcCXFnVXy60s2wMV7OnUfu15vIOMNK0SYnp6mtraWQCBAW1sbHo/HNjL/ySECDXvt/br+Gox0Z2zXybn6CIChmCw5rD0uGB3RrLq6Otrb22MUysrK6O/vt3mTaVngiLRt+s47Wdu8ZQXA2HMawAyGmCjrYsPUBRw52ZE0WXfMMnm9XqqrqyNZl2hf+DdvIeTzaX5OQwnuXZtWAIw+HTmtFL7ir9k4OYEzL5fZ2Vlyc3O1MetnGNHh+jeAz5kCToeehcIzjyaoga/Gdme4qAuH281dM5ftCIaGhujo6ND5t6iiooLu7m69vtJ1FH/Nk3q9/r17yaoqSABwdqcNsDj1J77K46RvLWNjby+hUEhHYRXYoqamJlpaWvR6umEPswcORIzvKyHnsTvijOvEyEh1zKAt+ucZqbSuCCHD4yG/ZT+pxUVIOMzC4CCXmpu52tOjU+rMXkPRie0YjmitVqIoGfYkvIuunp5j/JUhlq6ErHmMFBfBkepgfWMhtz1eENMECd3XEQzvuPF1fT3tm+ArOVP+JfDETZxdxRF1TMcuP99vPaz/86Mvou4+adjVkaHSb1DyyCrcTKTiVSU/6ifub7QgYG+VM3uXAAAAAElFTkSuQmCC"></a>
+                                    <a href="javascript:void(0);" class="let-me-login">已有账号|登录</a></p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="btn"><a href="javascript:void(0);" class="btn btn-primary">获取验证信息</a></p>
+                    </li>
+                    <li class="step-2 hide">
+                        <p class="info">请求已发送!</p>
+
+                        <table>
+                            <tr>
+                                <th>验证码:
+                                </th>
+                                <td>
+                                    <input type="text" class="verify-code" id="r-verify-check"><a
+                                        href="javascript:void (0);"
+                                        class="tryAgain">60秒后重新获取</a>
+                                </td>
+                            </tr>
+                            <tr class="err-info hide">
+                                <th></th>
+                                <td><b class="error">密码错误! -- $('.err-info').hide()</b></td>
+                            </tr>
+                        </table>
+                        <p><a href="javascript:void(0);" class="let-me-login">已有账号|登录</a></p>
+                        <p class="btn"><a href="javascript:void(0);" class="btn btn-primary">下一步</a></p>
+                    </li>
+                    <li class="step-3 hide">
+                        <p><input type="checkbox" checked="checked" readonly>已发送 <a href="javascript:void(0);"
+                                                                                    class="email"
+                                                                                    id="email-link" target="_blank">abc@abc.com</a>
+                        </p>
+                        <p>进入邮箱点击链接完成验证<br>
+                            <span class="js-five-count">5</span>s 后自动关闭本弹窗 </p>
+                        <p><a href="javascript:void(0);" class="let-me-login">已有账号|登录</a></p>
+                        <p class="btn"><a href="javascript:void(0);" class="btn btn-primary">关闭窗口</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="callback-box hide">
+                <ul>
+                    <li class="callback-content hide">
+                        <table>
+                            <tbody>
+
+                            <tr>
+                                <th>名称:</th>
+                                <td><input type="text" name="name" placeholder="输入相关名称"></td>
+                            </tr>
+                            <tr>
+                                <th>反馈内容:</th>
+                                <td>
+                                    <textarea name="report" id="popup-callback" cols="40" rows="10" maxlength="200"
+                                              placeholder="输入意见反馈内容(200字以内)"></textarea>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="btn"><a href="javascript:void(0);" class="btn btn-primary">提交</a></p>
+                    </li>
+                    <li class="report-content hide">
+                        <table>
+
+                            <tbody>
+
+                            <tr>
+                                <th>请输入举报对象:</th>
+                                <td><input type="text" name="name" maxlength="200" placeholder="输入相关名称(200字以内)"></td>
+                            </tr>
+                            <tr>
+                                <th>举报内容:</th>
+                                <td><textarea name="report" id="popup-report" cols="40" rows="10" maxlength="200"
+                                              placeholder="输入举报内容(200字以内)"></textarea>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="btn"><a href="javascript:void(0);" class="btn btn-primary">提交</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    "use strict";
+    require(['jquery', 'lib/common', 'business/report', 'business/router', 'business/jalert'], function ($, common, report, router, jalert) {
+        var _public = {}
+        var _private = {};
+
+        _private.login = function (params, done, error,poppane) {
+            common.send('login', params).done(function (result) {
+
+                if (result && result.code == 1) {
+                    done(result)
+                } else if (result.code == -2) {
+                    jalert.alert(result.info,"确定");
+                    common.send("EmailVer",{option:"resend",emailname:params.account}).done(function(result){
+                            poppane.close().reset();
+                    });
+                } else {
+                    error(result.info);
+                }
+            }).error(function () {
+                error("出了一些错误:" + result.info);
+            })
+        };
+
+        _private.register = function (params, done, error) {
+            common.send('register', params).done(function (result) {
+                if (result && result.code == 1) {
+                    done(result);
+                } else {
+                    error(result);
+                }
+            })
+        };
+
+        _public.dom = function () {
+
+
+            var $member = $(".footer-content-text  a").eq(0),
+                 $bosss = $(".footer-content-text  a").eq(1);
+
+            $member.click(function (e) {
+                if($("#btn-login").length==1){
+                    jalert.timeout("您未登录","确定",null,2);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }else if($("#js-usernickname-vk").data("type")==1){
+                    jalert.alert("您不是义工不能访问,请注销后更换账号登录","确定",null);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                common.skipUri(router.getUrl("memberJSP"));
+            });
+            $bosss.click(function (e) {
+
+                if($("#btn-login").length == 1 ){
+                    jalert.timeout("您未登录","确定",null,2);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }else if($("#js-usernickname-vk").data("type")==0){
+                    jalert.alert("您不是客栈老板不能访问,请注销后更换账号登录","确定",null);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                common.skipUri(router.getUrl("bossJSP"));
+
+            });
+
+
+
+            function popup(str) {
+
+
+
+                //#popup用show或者toggle之类函数 其他类别用hide来操作  因为其他hide类有的不能显示为block;
+                //log-reg-box里包含登录和注册 step-0是登录 step-1是注册 step-2是手机绑定(需要禁用顶部右侧的按钮 添加disabled类)
+                //back-svg-tab里的a添加disabled类可以使所有的a标签失效 处于失效 ,disabled属性在reset.css中
+                var poppane = {
+                    info: ["个人", "手机"],//用于记录一些信息
+                    init: init,//body添加scrollhide类  显示popup 绑定点击mask关闭popup 绑定已有账号-让我登录按钮
+                    show_login: show_login,//显示login版面
+                    show_register: show_register,//显示register版面
+                    show_report: show_report,//显示举报
+                    show_callback: show_callback,//显示反馈
+                    reset: reset,//重新给全部类添加hide类
+                    close: close,//关闭popup 去除mask的事件函数
+                    left_title: left_title,//顶部的title切换 显示左边的title
+                    right_title: right_title,//
+                    type: 'member'
+                };
+
+
+
+
+                var phone_reg = /^1\d{10}$/;
+                var email_reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+                $(".js-qq").click(function(e){
+
+                    var $this = $(this);
+                    common.send("qqLink",{type:poppane.type}).done(function(result){
+                        if(result && result.code ==1){
+                            common.skipUri($this.attr("href"));
+                        }
+                    });
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                });
+
+
+
+                if (str == "login") {
+                    poppane.init().left_title().show_login();
+                    //登录的一些函数去show_login
+                } else if (str == "register") {
+                    poppane.init().left_title().show_register();
+                    //注册的一些函数绑定去show_register
+                } else if (str == "report") {
+                    poppane.init().left_title().show_report();
+                    //注册的一些函数绑定去show_register
+                } else if (str == "callback") {
+                    poppane.init().left_title().show_callback();
+                    //注册的一些函数绑定去show_register
+                }
+                function init() {
+                    //隐藏body的scroll条
+                    //popup使用positon:absolute;top,left,right,bottom;0;所以没有滚动条
+                    $(document.body).addClass("scroll-hide");
+                    //显示主体
+                    $("#popup").fadeIn("fast");
+                    //点击mask关闭弹窗
+                    $("#mask").on("click", function () {
+                        poppane.close().reset();
+                    });
+                    $("#popup .let-me-login").on("click", function () {
+                        poppane.reset().show_login();
+                    });
+                    return this
+                }
+
+                function show_login() {
+                    //显示登录页面
+                    //去掉隐藏框
+                    $("#popup .log-reg-box").removeClass("hide");
+                    //bind  some listeners on the below
+                    //...
+
+                    $(".step-0").removeClass("hide");
+
+                    //左右顶部的事件
+                    $(".back-svg-tab .log-reg-box .left .step-0 a").click(function () {
+                        poppane.left_title().info[0] = "个人";
+                        poppane.type = 'member'
+                    });
+                    $(".back-svg-tab .log-reg-box .right .step-0 a").click(function () {
+                        poppane.right_title().info[0] = "商家";
+                        poppane.type = 'boss'
+                    });
+
+                    //回车登录
+                    $("#l-password").keydown(function (e) {
+                        if (e.keyCode == 13) {
+                            $(".step-0 .btn-primary").click();
+                        }
+                    });
+                    //绑定的btn-primary
+                    $(".step-0").on("click", ".btn-primary,.more,.forget-password", function () {
+                        var type = poppane.info[0];//第一个是登录类型 如果手机和邮箱用不同的接口 需要将下面的测试用上来
+                        var username = $("#l-username").val().trim();
+                        var password = $("#l-password").val().trim();
+                        var $a = $(this);
+                        if ($a.hasClass("more")) {
+                            //前往注册
+                            $(".step-0").addClass("hide").off("click");
+                            poppane.show_register();
+                            return;
+                        } else if ($a.hasClass("forget-password")) {
+                            //忘记密码
+                            //??
+                            window.location.href = router.getUrl("forget_pwd");
+                            return false;
+                        } else {
+                            var op = phone_reg.test(username)? 'mobile':'email';
+
+                            _private.login({
+                                type: poppane.type,
+                                option: op,
+                                account: username,
+                                pwd: password
+                            }, function (res) {
+                                if (res.code == 1) {
+                                    common.skipUri(window.location.href);
+                                } else {
+                                    jalert.error(res.info,"确定");
+                                }
+                            }, function (info) {
+                                $(".l-err-info,.error").show();
+                                $(".error").text(info);
+                            },poppane);
+
+                        }
+                    });
+                };
+                function show_register() {
+                    //显示登录页面
+                    //去掉隐藏框
+                    $("#popup .log-reg-box").removeClass("hide");
+                    $(".step-1").removeClass("hide");
+
+
+                    //设置时间禁用再次获取
+                    //左右顶部的事件
+                    $(".back-svg-tab .log-reg-box .left .step-1 a").click(function () {
+                        poppane.left_title().info[0] = "个人";
+                        poppane.type = "member";
+                    });
+                    $(".back-svg-tab .log-reg-box .right .step-1 a").click(function () {
+                        poppane.right_title().info[0] = "商家";
+                        poppane.type = "boss";
+                    });
+                    $("#next-v").on("click", function () {
+                        $(this).children().attr("src", "");
+                    });
+
+                    $(".step-1").on("click", ".btn-primary,.more", function () {
+                        //点击注册按钮会怎么做 现在是隐藏第这一步,进入手机绑定
+
+            if($(this).hasClass("more")){
+
+                window.open(router.getUrl("contract"));
+                return false;
+            }
+                        var username = $("#r-username").val().trim();
+                        var password = $("#r-password").val();
+                        var password2 = $("#r-password-2").val();
+                        var agree = $("#r-agree").prop("checked");
+                        var err = {
+                            s: function (text) {
+                                $(".r-err-info").show().find(".error").text("*" + text);
+                            }, hide: function () {
+                                $(".r-err-info").hide()
+                            }
+                        };
+
+                        err.hide();
+                        if (password == "") {
+                            err.s("密码不能为空");
+                            return false
+                        } else {
+                            if (!/^[A-Za-z0-9_]{6,18}$/.test(password)) {
+                                err.s("密码为6至18位的任意大小写字母、数字、下划线");
+                                return false
+                            } else {
+                                err.hide();
+                            }
+                            if (password != password2) {
+                                err.s("两次密码不一致!");
+                                return false
+                            } else {
+                                err.hide();
+                            }
+                        }
+                        if (!agree) {
+                            err.s("请同意《用户服务协议》");
+                            return false;
+                        } else {
+                            err.hide();
+                        }
+
+
+                        if (phone_reg.test(username)) {
+                            //隐藏注册第一步
+                            $(".step-1").addClass("hide");
+                            $(".step-1").off();
+                            $(".back-svg-tab .log-reg-box .step-1 a").off();
+                            $(".step-2").removeClass("hide");
+                            poppane.left_title();
+
+                            var tryagian = {
+                                i: {},
+                                count: 59,
+                                on: function () {
+                                    $(".tryAgain").text('请求中..').addClass("disabled");
+                                    var self = this;
+                                    _private.register({
+                                        type: poppane.type,
+                                        option: 'mobile',
+                                        account: username
+                                    }, function (result) {
+                                        jalert.alert(result.info,"确定")
+                                        self.i = setInterval(function () {
+                                            if (tryagian.count != -1) {
+                                                $(".tryAgain").text(tryagian.count-- + "秒后重新获取").addClass("disabled");
+                                            } else {
+                                                tryagian.off();
+                                            }
+                                        }, 1000)
+                                    }, function (result) {
+
+                                        jalert.error(result.info,"确定");
+                                        self.off();
+                                    })
+
+
+                                },
+                                off: function () {
+                                    $(".tryAgain").removeClass("disabled").text("点击获取验证码");
+                                    clearInterval(this.i);
+                                    this.count = 59;
+                                }
+                            };
+
+
+                            tryagian.on();
+                            $(".tryAgain").click(function () {
+                                //点击再次获取验证码后
+                                //再次发送验证码
+                                tryagian.on();
+                            });
+                            $(".step-2").on("click", ".btn-primary", function () {
+                                if ($(this).hasClass("tryAgain")) {
+                                    return false;
+                                }
+                                var verify = $("#r-verify-check").val();
+                                //输入验证码后
+                                _private.register({
+                                    type: poppane.type,
+                                    option: 'mobile',
+                                    pwd: password,
+                                    verid: parseInt($("#r-verify-check").val())
+                                }, function (result) {
+                                    $(".step-2 .info").html("验证成功!前往个人中心!!");
+                                    jalert.alert(result.info,"确定")
+                                    setTimeout(function () {
+                                        if (poppane.type == "member") {
+                                            common.skipUri(router.getUrl("memberJSP"));
+                                        }else {
+                                            common.skipUri(router.getUrl("bossJSP"));
+                                        }
+                                        poppane.reset().close();
+                                        //前往个人中心
+                                    }, 2000)
+                                }, function (result) {
+                                    $(".step-2 .info").html("<span class='error'>验证失败！" + "\n" + (result.info || '') + "</span>")
+                                })
+                            });
+                        } else if (email_reg.test(username)) {
+
+                            _private.register({
+                                type: poppane.type,
+                                option: 'email',
+                                account: username,
+                                pwd: password
+                            }, function (result) {
+
+                                //禁用手机验证tab
+                                poppane.right_title();
+                                //隐藏注册第一步
+                                $(".step-1").addClass("hide");
+                                $(".back-svg-tab .log-reg-box .step-1 a").off();
+                                $(".step-3").removeClass("hide");
+                                //设置邮箱名称和链接
+                                var $email = $("#popup #email-link");
+                                $email.text(username);
+
+                                jalert.alert(result.info,"确定");
+                                var hash = {
+                                    'qq.com': 'http://mail.qq.com',
+                                    'gmail.com': 'http://mail.google.com',
+                                    'sina.com': 'http://mail.sina.com.cn',
+                                    '163.com': 'http://mail.163.com',
+                                    '126.com': 'http://mail.126.com',
+                                    'yeah.net': 'http://www.yeah.net/',
+                                    'sohu.com': 'http://mail.sohu.com/',
+                                    'tom.com': 'http://mail.tom.com/',
+                                    'sogou.com': 'http://mail.sogou.com/',
+                                    '139.com': 'http://mail.10086.cn/',
+                                    'hotmail.com': 'http://www.hotmail.com',
+                                    'live.com': 'http://login.live.com/',
+                                    'live.cn': 'http://login.live.cn/',
+                                    'live.com.cn': 'http://login.live.com.cn',
+                                    '189.com': 'http://webmail16.189.cn/webmail/',
+                                    'yahoo.com.cn': 'http://mail.cn.yahoo.com/',
+                                    'yahoo.cn': 'http://mail.cn.yahoo.com/',
+                                    'eyou.com': 'http://www.eyou.com/',
+                                    '21cn.com': 'http://mail.21cn.com/',
+                                    '188.com': 'http://www.188.com/',
+                                    'foxmail.coom': 'http://www.foxmail.com'
+                                };
+
+                                var url = username.split("@")[1];
+
+                                $("#email-link").attr("href", hash[url])
+
+                                $(".step-3").on("click", ".btn-primary", function () {
+                                    poppane.reset().close();
+                                });
+                                var fake_count = 4;
+                                setInterval(function(){
+                                    $("#js-five-count").text(fake_count--)
+                                });
+                                setTimeout(function () {
+                                    if (poppane.type == "member") {
+                                        common.skipUri(router.getUrl("memberJSP"));
+                                    }else {
+                                        common.skipUri(router.getUrl("bossJSP"));
+                                    }
+                                    poppane.reset().close();
+                                    //前往个人中心
+                                }, 4000)
+
+                            }, function (result) {
+
+                                if(result && result.code==0){
+                                    jalert.error(result.info,"确定");
+                                    poppane.reset().show_register();
+                                }
+                            });
+
+                        } else {
+                            if(/\d*/.test(username) ){
+                                err.s("手机号或用户名输入错误!");
+                            }else{
+                                err.s("用户名或密码错误!");
+                            }
+
+                        }
+                    })
+                }
+
+                function show_report() {
+                    //隐藏右上的tab
+                    $("#popup .back-svg .right").addClass("hide");//
+                    //显示反馈box
+                    //去掉隐藏框
+                    $("#popup .callback-box").removeClass("hide");//
+                    $("#popup .report-content").removeClass("hide");//
+                    //暂无
+                }
+                ;
+                function show_callback() {
+                    //
+                    $("#popup .callback-box").removeClass("hide");//
+                    $("#popup .back-svg .right").addClass("hide");//
+                    $("#popup .callback-content").removeClass("hide");//
+
+                }
+                ;
+                function reset() {
+                    $("#popup li,#popup .log-reg-box,#popup .callback-box").addClass("hide");
+                    $(".step-0,.step-1,.step-2").each(function () {
+                        $(this).off();
+                    });
+                    $(".tryAgain").off();
+                    $(".back-svg-tab .log-reg-box .step-1 a").off();
+                    $("#l-password").off();
+
+                    return this
+                }
+                ;
+                function close() {
+                    $("#l-password").off();
+                    $("#popup").fadeOut("fast");
+                    $(document.body).removeClass("scroll-hide");
+                    $("#popup input").val("");
+                    $("#popup a,#popup li,#mask").off();
+                    $(".l-err-info,.r-err-info").hide();
+                    $('#btn-login').off();
+                    $('#btn-login').click(function () {
+                        popup('login')
+                    });
+                    $(".step-0").off();
+                    $('#btn-register').off();
+                    $('#btn-register').click(function () {
+                        popup('register')
+                    });
+
+                    $(".js-qq").off();
+
+
+                    return this
+                }
+
+                function left_title(str) {
+                    $(".back-svg").removeClass("right-up").addClass("left-up");
+                    return this
+                }
+
+                function right_title() {
+                    $(".back-svg").removeClass("left-up").addClass("right-up");
+                    return this
+                }
+
+            }
+
+            //防止缓存造成的事件没有绑定
+            var login_timer = setInterval(function(){
+
+                if($('#btn-login').length==0){
+                    console.log("waiting..")
+
+                    if($("#js-usernickname-vk").length!=0){
+                        clearInterval(login_timer);
+                    }
+                    ;
+                } else {
+                    $('#btn-login').click(function () {
+                        popup('login')
+                    });
+                    clearInterval(login_timer);
+                }
+            },500);
+            var register_timer = setInterval(function(){
+                if($('#btn-login').length==0){
+
+                    if($("#js-usernickname-vk").length!=0){
+                        clearInterval(register_timer);
+                    }
+                    ;
+                } else {
+                    $('#btn-register').click(function () {
+                        popup('register')
+                    });
+                    clearInterval(register_timer);
+                }
+            },500);
+
+
+        }
+        _public.dom();
+    })
+
+
+</script>

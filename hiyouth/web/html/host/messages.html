@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>我的消息-嗨柚</title>
+    <link rel="stylesheet" type="text/css" href="../../css/share/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/share/ui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/share/messages.css" />
+</head>
+
+<body>
+    <!-- header-->
+    <div class="header">
+        <div class="header-content">
+            <div class="headerWrapper fix">
+                <div class="header-content-logo fl">
+                    <a href="../index.html"><img src="../../img/header/logo.png" alt="logo" /></a>
+                </div>
+                <div class="header-content-nav fr">
+                    <ul>
+                        <li><a href="../index.html" >首页</a></li>
+                        <li><a href="../about-us.html">关于我们</a></li>
+                        <li><a id="x-place-1">加载中</a></li>
+                        <li><a id="x-place-2">加载中</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /header -->
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="box">
+                <div class="box-header">
+                    <h1 class="title">我的消息</h1>
+                </div>
+                <div class="box-content">
+                    <div class="tab-group clear-fix">
+                        <ul id="delegate">
+                            <li><a href="javascript:void(0);" class="tab tab-active">评论<span
+                                class="tab-new hide">+3</span></a></li>
+                            <li><a href="javascript:void(0);" class="tab">问答<span
+                                class="tab-new hide">+3</span></a></li>
+                            <li><a href="javascript:void(0);" class="tab">系统消息<span
+                                class="tab-new hide">+3</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <ul class="card-list" id="comment">
+
+                        </ul>
+                        <ul class="card-list hide" id="question">
+
+                        </ul>
+                        <ul class="card-list hide" id="system">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--
+      pagination
+      -->
+            <div class="pagination-wrapper">
+                <ul class="pagination">
+                    <li>
+                        <a href="javascript:void(0);" class="pre"></a>
+                    </li>
+                    <li><a href="javascript:void(0);">1</a></li>
+                    <li><a href="javascript:void(0);">2</a></li>
+                    <li><a href="javascript:void(0);">3</a></li>
+                    <li><a href="javascript:void(0);">4</a></li>
+                    <li><a href="javascript:void(0);">5</a></li>
+                    <li><a href="javascript:void(0);">6</a></li>
+                    <li><a href="javascript:void(0);">7</a></li>
+                    <li><a href="javascript:void(0);">8</a></li>
+                    <li><a href="javascript:void(0);">9</a></li>
+                    <li><a href="javascript:void(0);">10</a></li>
+                    <li><a href="javascript:void(0);">11</a></li>
+                    <li>
+                        <a href="javascript:void(0);" class="next"></a>
+                    </li>
+                    <li>跳转到 ：&nbsp;
+                        <input type="text" id="jumpTo" />
+                    </li>
+                    <li><a href="javascript:void(0);" class="go">GO</a></li>
+                </ul>
+            </div>
+            <!--
+        .pagination
+        -->
+        </div>
+    </div>
+    <!-- toolbor -->
+    <div class="toolbar">
+        <a id="scrollTop" href="javascript:void(0);"></a>
+    </div>
+    <!-- /toolbor -->
+    <!-- footer-->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footerWrapper">
+                <div class="footer-content-text ">
+                    <ul>
+                        <li>
+                            <h2>快速导航</h2>
+                            <p><a href="javascript:void(0);">我是义工</a></p>
+                            <p><a href="javascript:void(0);">我是商家</a></p>
+                            <p><a href="javascript:void(0);">友情链接</a></p>
+                        </li>
+                        <li>
+                            <h2>帮助中心</h2>
+                            <p><a href="javascript:void(0);">常见问题</a></p>
+                            <p><a href="../contract.html" target="_blank">用户协议</a></p>
+                        </li>
+                        <li>
+                            <h2>反馈</h2>
+                            <p><a href="javascript:void(0);">意见建议</a></p>
+                            <p><a href="javascript:void(0);">举报</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-content-conact">
+                    <ul>
+                        <li class="hide">
+                            <img src="../../img/footer/footer1.png" alt="微博图标" />
+                            <p>嗨柚旅行微博</p>
+                            <a href="http://weibo.com/hiyouther" title="点击关注我们的微博"><img src="../../img/footer/footer2.png" alt="微博图标" /></a>
+                        </li>
+                        <li>
+                            <img class="erweima" src="../../img/footer/8cmerweima.jpg" alt="微信公众号二维码" />
+                            <p>嗨柚微信公众号</p>
+                            <p>hiyouthtour</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright&copy;2015-2016 hiyouther.com All Rights Reserved</p>
+            <p><a href="http://www.miitbeian.gov.cn" title="http://www.miitbeian.gov.cn">渝ICP备16003213号-1</a></p>
+        </div>
+    </div>
+    <!-- /footer -->
+    <script src="../../js/lib/require.js"></script>
+    <script type="text/javascript" rel="script">
+    require.config({
+        baseUrl: "../../js",
+        paths: {
+            jquery: 'lib/jq',
+            domReady: 'lib/require.domready'
+        }
+    });
+    require(['domReady', 'page/host.messages'], function(domReady, messages) {
+        domReady(function() {
+            messages.init()
+        });
+    });
+    </script>
+    <script type="text/html" id="comment-tpl">
+        <% if (data != undefined && data.length != 0){ %>
+        <% for(var i=0 ,len=data.length;i < len;i++){%>
+            <%var  tpl= data[i] ; %>
+            <li data-rid="<%= tpl.rid %>" data-cid="<%= tpl.id %>" data-aid="<%= tpl.user.id%>">
+                <h1 class="title bdrb-227"><%=tpl.title%></h1>
+                <div class="comment <%if(tpl.self == 1){%>comment-right<%}else{%>comment-left<%}%>">
+                    <div class="portrait-70 bdr-227">
+                        <a href="javascript:void(0)"><img src="<%=tpl.user.headpic%>" alt="头像" title="点击查看详情" /></a>
+                    </div>
+                    <div class="comment-area">
+                        <p>
+                            <a href="javascript:void(0);" class="text-theme hotel">
+                                <%=tpl.user.name%>
+                            </a>:
+                        </p>
+                        <p><span class="time"><%= tpl.time%></span></p>
+                        <p>
+                            <%=tpl.content%>
+                        </p>
+                    </div>
+                </div>
+                <% var answer=tpl.answer,user=tpl.user;  %>
+                <% for(var j = 0,lens=answer.length;j< lens;j++){%>
+                            <div class="comment <%if(answer[j].user.self == 1){%>comment-right<%}else{%>comment-left<%}%>">
+                                <div class="portrait-70 bdr-227">
+                                    <a href="javascript:void(0);" title="点击查看详情"><img src="<%=answer[j].user.headpic %>" alt="头像" /></a>
+                                </div>
+                                <div class="comment-area">
+                                    <p>
+                                        <a href="javascript:void(0);" class="text-theme hotel">
+                                            <%=answer[j].user.name%>
+                                        </a>:
+                                    </p>
+                                    <p><span class="time"><%= answer[j].time%></span></p>
+                                    <p>
+                                        <%= answer[j].content%>
+                                    </p>
+                                </div>
+                            </div>
+                <%}%>
+                <div class="recomment">
+                    <a href="javascript:void(0);" class="btn btn-primary fr reply-btn">回复</a>
+                    <div class="hide">
+                        <textarea name="" rows="20" cols="85" class="fr"></textarea>
+                        <p class="fr"><a href="javascript:void(0);" class="btn btn-neg">取消回复</a><a href="javascript:void(0);" class="btn btn-primary js-comment">确认回复</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        <% }%>
+        <% }else {%>
+        <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+        <% }%>
+    </script>
+    <script type="text/html" id="question-tpl">
+        <% if (data != undefined && data.length != 0){ %>
+
+        <% for(var i=0,length=data.length;i < length;i++){var tpl=data[i],answer=tpl["answer"],user=tpl["user"]; %>
+            <li data-rid="<%= tpl.rid %>" data-cid="<%= tpl.id %>" data-aid="<%= tpl.user.id%>">
+                <h1 class="title bdrb-227"><%= tpl.title %></h1>
+                <div class="comment comment-left">
+                    <div class="portrait-70 bdr-227">
+                        <a href="javascript:void(0);" title="点击查看详情"><img src="<%= tpl.user.headpic %>" alt="头像" /></a>
+                    </div>
+                    <div class="comment-area">
+                        <p>
+                            <a href="javascrip:void(0);" class="text-theme"><%= tpl.user.name %></a>提问:
+                        </p>
+                        <p><span class="time"><%=tpl.time%></span></p>
+                        <p>
+                            <%=tpl.content%>
+                        </p>
+                    </div>
+                </div>
+                <%for(var j=0,len=answer.length;j< len;j++){
+                    if(answer[j].user.type==user.type && answer[j].user.id == user.id){%>
+                    <div class="comment <%if(answer[j].user.self == 1){%>comment-right<%}else{%>comment-left<%}%>">
+                        <div class="portrait-70 bdr-227">
+                            <a href="javascript:void(0);" title="点击查看详情"><img src="<%= answer[j].user.headpic %>" alt="头像" /></a>
+                        </div>
+                        <div class="comment-area">
+                            <p>
+                                <%if(answer[j].user.self == 1){%>
+                                我
+                                <%}else{%>
+                                <a href="javascript:void(0);" class="text-theme"><%= answer[j].user.name%></a>
+                                <%}%>
+                                :
+                            </p>
+                            <p><span class="time"><%= answer[j].time%></span></p>
+                            <p>
+                                <%= answer[j].content%>
+                            </p>
+                        </div>
+                    </div>
+                    <%}else{%>
+                        <div class="comment <%if(answer[j].user.self== 1){%>comment-right<%}else{%>comment-left<%}%>">
+                            <div class="portrait-70 bdr-227">
+                                <a href="javascript:void(0)"><img src="<%= answer[j].user.headpic %>" alt="头像" title="点击查看详情" /></a>
+                            </div>
+                            <div class="comment-area">
+                                <p>
+                                    <a href="javascript:void(0);" class="text-theme">
+                                        <%= answer[j].user.name%>
+                                    </a>:
+                                </p>
+                                <p><span class="time"><%= answer[j].time%></span></p>
+                                <p>
+                                    <%= answer[j].content%>
+                                </p>
+                            </div>
+                        </div>
+                           <% }%>
+                      <%}%>
+                            <div class="recomment">
+                                <a href="javascript:void(0);" class="btn btn-primary fr reply-btn">回复</a>
+                                <div class="hide">
+                                    <textarea name="" rows="20" cols="85" class="fr"></textarea>
+                                    <p class="fr"><a href="javascript:void(0);" class="btn btn-neg">取消回复</a><a href="javascript:void(0);" class="btn btn-primary js-question">确认回复</a>
+                                    </p>
+                                </div>
+                            </div>
+            </li>
+        <%}%>
+        <% }else { %>
+        <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+        <% }%>
+    </script>
+    <script type="text/html" id="system-tpl">
+        <h1 class="system-info bdrb-227">Hi!你收到了 <span class="text-theme" id="system-info-count"><%= index%></span>条系统消息,请注意查看.如果遇到问题,请<a
+                href="../about-us.html" class="text-theme contact-us-btn">联系我们</a> <a
+            href="javascript:void(0);" class="btn btn-neg del-all-btn fr">删除本页全部</a></h1>
+        <% if (data != undefined && data.length != 0){ %>
+        <% for(var i =0,length=data.length;i< length;i++){
+                var tpl=data[i];
+                %>
+            <li data-id="<%= tpl.id%>" data-rid="<%= tpl.rid%>" <%if(tpl.iflook==0){%>class="redNew" <%}%>>
+                <div class="comment comment-left">
+                    <div class="portrait-70 bdr-227">
+                        <a href="javascript:void(0)"><img src="<%=tpl['img'] %>" alt="头像" title="点击查看详情" /></a>
+                        <a href="javascript:void(0)">[设为已读]</a>
+                    </div>
+                    <div class="comment-area">
+                        <p>
+                            <%=# tpl["content"]%>
+                        </p>
+                        <p><span class="time"><%= tpl["time"]%></span></p>
+                        <p>
+                            <%=tpl["name"]%>
+                        </p>
+                    </div>
+                    <a href="javascript:void(0);" class="close-btn js-del"><img src="../../img/icons/delete.png" alt="删除图标" /></a>
+                </div>
+            </li>
+           <% } %>
+        <% }else { %>
+        <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+        <% }%>
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+@charset "utf-8";
+
+body, html {
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+.edit-display .disabled {
+    color: inherit !important;
+    border: none;
+}
+
+.edit-display select.disabled {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+.header .header-content {
+    background-color: #FFFFFF;
+    min-width: 830px;
+}
+
+.header-content {
+    border-bottom: solid 2px rgb(16, 208, 216);
+}
+
+.container-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+
+}
+
+.container {
+    margin-top: 15px;
+    margin-bottom: 63px;
+    min-width: 830px;
+}
+
+.box .box-content {
+    padding: 15px 46px 35px;
+}
+
+.box .option {
+    margin-top: 32px;
+}
+
+table {
+    font-size: 16px;
+}
+
+table tr {
+    height: 47px;
+    line-height: 47px;
+}
+
+table tr th {
+    text-align: right;
+    word-wrap: normal;
+    white-space: pre;
+}
+
+table tr th > span {
+    margin-left: 5px;
+}
+
+table tr td {
+    padding-left: 15px;
+}
+
+td input[type="text"] {
+    height: 30px;
+    line-height: 30px;
+    font-size: inherit;
+    padding: 0 10px;
+    width: 400px;
+    border: solid 1px #E3E3E3;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+}
+
+select {
+    margin-right: 13px;
+    width: 160px;
+}
+
+textarea {
+    max-width: 760px;
+    height: 200px;
+    font-size: 14px;
+}
+
+.tag-pane{
+    display: none;
+    border: dashed 2px #16D0D8;
+    margin-top: 20px;
+}
+.labels {
+    list-style: none;
+}
+
+.labels li {
+    float: left;
+    box-sizing: border-box;
+    margin: 0 3px;
+    position: relative;
+}
+td input.short[type="text"]{
+    width: 231px;
+}
+ table tr td > span {
+    display: block;
+}
+table tr td > span img {
+    vertical-align: middle;
+    width: 20px;
+}
+.t-del{
+    position: absolute;
+    display: none;
+    top: 0;
+    right: -6px;
+    line-height: 12px;
+    font-size: 13px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #FD4644;
+}
+
+.box-header .title a {
+    font-size: 14px;
+}
+
+.renzhen img {
+    margin: 0 6px 0 20px
+}
+
+.renzhen .btn {
+    margin-left: 193px;
+}
+
+ul.photo-list li {
+    position: relative;
+    margin: 20px 10px;
+    min-height: 170px;
+    width: 200px;
+    float: left;
+    background-color: rgb(234, 234, 234);
+}
+
+.photo-list li p {
+
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    background-color: black;
+    opacity: 0.5;
+    filter: Alpha(opacity=50);
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.photo-list li:hover .hide ~ p {
+    display: block;
+    height: 30px;
+}
+
+.photo-list li p span {
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+.photo-list li a {
+    position: absolute;
+    font-size: 6em;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 130px;
+    color: #fff;
+    height: 60px;
+    margin: auto;
+    text-align: center;
+}
+
+.photo-list li img {
+    width: 200px;
+    height: 170px;
+    vertical-align: middle;
+}
+.edit-display .hide{
+    display: none;
+}
+.vhide {
+    visibility: hidden;
+}
+#new-tag-btn{
+    /*margin-left: -90px;*/
+}
+
+@media screen and   (max-width: 768px){
+    .header .header-content{
+        min-width: 100%;
+    }
+    .container{
+        min-width: 100%;
+        width: 100%;
+    }
+        .title .btn{
+            padding: 0;
+        }
+    .box .box-content {
+        padding: 10px;
+    }
+    table{display: block}
+    table  tr{
+        height: auto;
+        line-height: 1.1;
+        display: block;
+    }
+    table tbody{
+        display: block;
+    }
+    th{
+        display: inline-block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    table tr td{
+        padding-left: 0;
+        display: block;
+    }
+    textarea{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    select{
+        width: 110px;
+    }
+    td input[type="text"]{
+        width: 100%;
+        box-sizing: border-box;;
+    }
+    .labels{
+        margin: 24px 0;
+    }
+    .labels li {
+        line-height: 40px;
+    }
+    ul.photo-list li{
+        margin:10px;
+        width: 150px;
+        min-height: 128px;
+    }
+    ul.photo-list li img {
+        width: 150px;
+        height: 128px;
+    }
+    .photo-list li a{
+        height: 115px;
+    }
+}

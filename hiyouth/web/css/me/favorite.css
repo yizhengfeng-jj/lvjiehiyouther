@@ -1,0 +1,95 @@
+@charset "utf-8";
+body,
+html {
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+.header .header-content {
+    background-color: #FFFFFF;
+}
+
+.header-content {
+    border-bottom: solid 2px rgb(16, 208, 216);
+}
+
+.container-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.container {
+    margin-top: 15px;
+}
+
+.card-list li {
+    box-sizing: border-box;
+    padding: 20px 30px;
+    /* height: 120px; */
+    font-size: 16px;
+    border: solid 2px #fff;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.card-list li:hover {
+    border: solid 2px rgb(16, 208, 216);
+}
+
+.portrit-70 span {
+    font-size: 14px;
+}
+
+.card-center {
+    width: 6%;
+    /* margin-top: 8px; */
+    margin-left: 19px;
+    line-height: 25px;
+    letter-spacing: 1px;
+}
+
+.card-center p {
+    white-space: pre-line;
+    word-wrap: normal;
+    margin-top: 0;
+}
+
+.card-right {
+    width: 1%;
+    text-align: center;
+    line-height: 11px;
+    letter-spacing: 1px;
+    vertical-align: top;
+}
+
+.card-right a span {
+    line-height: 14px;
+    font-size: 14px;
+}
+
+.card-right p {
+    padding: 14px 0 0;
+}
+
+.card-right a span:hover {
+    color: rgb(16, 208, 216);
+}
+
+.pagination-wapper {
+    margin: 48px 0 40px;
+}
+
+@media screen and   (max-width: 768px){
+.card-right{
+    width: 100%;
+    float: left;
+}
+    .card-list li{
+        padding: 10px;
+    }
+    .portrait-70{
+        margin: 0 5px 0 0;
+    }
+}

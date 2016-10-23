@@ -1,0 +1,304 @@
+@charset "utf-8";
+/*seril1345*/
+body,
+html {
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+.redNew:before {
+    position: absolute;
+    content: "New";
+    /* padding-top: 3px; */
+    color: #FFFFFF;
+    text-align: center;
+    display: inline-block;
+    padding: 1px 1px;
+    border-radius: 12px;
+    font-size: 13px;
+    width: 48px;
+    height: 19px;
+    left: 22px;
+    z-index: 2;
+    background-color: #fc4758;
+    margin-left: 6px;
+}
+
+.header .header-content {
+    background-color: #FFFFFF;
+}
+
+.header-content {
+    border-bottom: solid 2px rgb(16, 208, 216);
+}
+
+.container-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.container {
+    margin-top: 15px;
+}
+
+table {
+    font-size: 16px;
+}
+
+table tr {
+    height: 47px;
+    line-height: 47px;
+}
+
+table tr th {
+    text-align: right;
+    word-wrap: normal;
+    white-space: pre;
+}
+
+table tr th>span {
+    margin-left: 5px;
+}
+
+table tr td {
+    padding-left: 15px;
+}
+
+td input[type="text"] {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    width: 258px;
+    -webkit-border-radius: 4px;;
+    -moz-border-radius: 4px;;
+    -ms-border-radius: 4px;;
+    -o-border-radius: 4px;;
+    border-radius: 4px;;
+    border: solid 1px #E3E3E3;
+}
+
+td input[type="radio"] {
+    margin-right: 5px;
+}
+
+td input[value="男"] {
+    margin-left: 29px;
+}
+
+select {
+    margin-right: 13px;
+}
+
+textarea {
+    width: 530px;
+    height: 70px;
+}
+
+.labels {
+    list-style: none;
+}
+
+.labels li {
+    float: left;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.message {
+    position: relative;
+    background-color: #FFFFFF;
+}
+
+.head-area {
+    padding: 10px 18px 0;
+}
+
+.btn-menu {
+    padding: 23px 11px;
+}
+ul.card-list .title a{color: inherit;}
+ul.card-list li {
+    box-sizing: border-box;
+    padding: 20px 50px;
+    /* height: 120px; */
+    font-size: 16px;
+    border: dashed 2px #fff;
+    -webkit-transition: all.5s;
+     -o-transition: all.5s;
+     transition: all.5s; 
+}
+
+.card-list li:hover {
+    border: dashed 2px rgb(16, 208, 216);
+}
+
+.comment {
+    overflow: hidden;
+    position: relative;
+    /* padding-bottom: 20px; */
+    border: dashed 2px #FFFFFF;
+    margin: 0 0 10px;
+    -webkit-transition:  all 1s;
+    -o-transition:  all 1s;
+    transition:  all 1s;
+}
+
+#question .comment:hover,
+#comment .comment:hover {
+    border: dashed 2px rgb(16, 208, 216);
+}
+
+.comment p {
+    margin: 0;
+    color: rgb(152, 152, 152);
+    letter-spacing: 0.5px;
+}
+
+.comment .photo {
+    float: inherit;
+    line-height: 70px;
+    width: 70px;
+    height: 70px;
+    /* margin-left: 40px; */
+    padding: 5px;
+    -webkit-border-radius:  4px;
+    -moz-border-radius:  4px;
+    -ms-border-radius:  4px;
+    -o-border-radius:  4px;
+    border-radius:  4px;
+}
+
+.comment .photo img {
+    width: 70px;
+    height: 70px;
+}
+
+.comment span {
+    font-size: 14px;
+}
+
+.comment-area {
+    width: 700px;
+    font-size: 14px;
+    line-height: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.comment-area a {
+    -webkit-transition: .7s;
+     	-o-transition: .7s;
+     	transition: .7s; 	
+}
+
+.comment-area a:hover {
+    color: rgb(16, 208, 216);
+    text-decoration: underline;
+}
+
+.recomment textarea {
+    width: 90%;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    margin: 20px 0;
+}
+
+.recomment textarea:focus {
+    border: solid 1px rgb(16, 208, 216);
+}
+
+.comment-left .portrait-70,
+.comment-left .comment-area {
+    float: left;
+}
+
+.comment-right .portrait-70,
+.comment-right .comment-area {
+    float: right;
+}
+
+.comment-right p {
+    text-align: right;
+}
+
+.time {
+    margin: 5px;
+}
+
+#system h1 {
+    color: rgb(121, 124, 127);
+    font-size: 16px;
+    line-height: 40px;
+    margin: 9px 51px 0;
+    padding-bottom: 18px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.comment:hover .close-btn {
+    display: block;
+}
+
+.card-list .option {
+    line-height: 11px;
+    letter-spacing: 1px;
+    text-align: center;
+    float: right;
+}
+
+.card-list .option a span {
+    line-height: 14px;
+}
+
+.card-list .option p {
+    margin-top: 0;
+    width: 160px;
+}
+
+.card-list .option a span:hover {
+    color: rgb(16, 208, 216);
+}
+
+.pagination-wapper {
+    margin: 50px 0;
+}
+
+@media screen and   (max-width: 768px){
+    ul.card-list li{
+        padding:5px;
+    }
+
+    .comment-area {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 2px 27px;
+    }
+    textarea{
+        box-sizing: border-box;;
+    }
+    #system h1{
+        margin:9px;
+    }
+    #system .portrait-70 {
+        display: none;
+    }
+
+    .redNew:before{
+        content: "";
+        /* padding-top: 3px; */
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        left: 14px;
+        top: 13px;
+        z-index: 2;
+    }
+}

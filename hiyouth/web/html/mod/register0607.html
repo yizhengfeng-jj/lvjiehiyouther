@@ -1,0 +1,748 @@
+<style>
+    i.error {
+        position: absolute;
+        display: none;
+        right: 42px;
+        text-align: right;
+        bottom: 9px;
+        color: #dd353e;
+    }
+    i.all-right {
+        color: #3eb8e3;
+    }
+    .overlay-login {
+        position: fixed;
+        display: none;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #0e0e0e;
+        opacity: 0.3;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    }
+    .the-box-wrapper {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        overflow: hidden;
+        z-index: 40;
+        /*login container*/
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .the-box-wrapper .hide {
+        display: none;
+    }
+    .the-box-wrapper .login-container {
+        width: 350px;
+        height: auto;
+        margin: 0 auto;
+        margin-top: -990px;
+        background-color: #ffffff;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        /*login content*/
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .the-box-wrapper .register-container {
+        width: 350px;
+        height: auto;
+        margin: 0 auto;
+        margin-top: -990px;
+        background-color: #ffffff;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        /*login content*/
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+
+    .the-box-wrapper .register-container .register-header {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        min-height: 30px;
+        padding-bottom: 30px;
+        margin-bottom: -8px;
+        background: url("http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/yun.png") no-repeat;
+    }
+    .the-box-wrapper .register-container .register-header .string {
+        display: inline-block;
+        cursor: default;
+        pointer-events: none;
+        margin-top: -134px;
+        width: 3px;
+        height: 134px;
+        vertical-align: bottom;
+        background-color: #16d0d8;
+        position: relative;
+    }
+    .the-box-wrapper .register-container .register-header .string:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        bottom: -12px;
+        box-sizing: border-box;
+        margin-left: -4px;
+        width: 12px;
+        height: 12px;
+        border: 2px solid #16d0d8;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .the-box-wrapper .register-container .register-header .login-close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 20px;
+        height: 20px;
+        line-height: 16px;
+        font-size: 0;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 2px;
+        border-radius: 50%;
+        border: solid 2px transparent;
+    }
+    .the-box-wrapper .register-container .register-header .login-close-btn:hover {
+        border: solid 2px #3eb8e3;
+    }
+    .the-box-wrapper .register-container .register-header h1 {
+        padding-top: 48px;
+        color: #16d0d8;
+        font-size: 18px;
+    }
+    .the-box-wrapper .register-container .register-header p {
+        padding-top: 12px;
+        color: #c9c9c9;
+        font-size: 16px;
+    }
+    .the-box-wrapper .register-container .register-content {
+        width: 100%;
+        max-height: 477px;
+        overflow: hidden;
+        text-align: center;
+        -webkit-border-radius: 0 0 10px 10px;
+        -moz-border-radius: 0 0 10px 10px;
+        border-radius: 0 0 10px 10px;
+        background: url("http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/wave.png") no-repeat;
+        /*step 1*/
+        /*step 2*/
+    }
+    .the-box-wrapper .register-container .register-content p.foo {
+        text-align: right;
+    }
+    .the-box-wrapper .register-container .register-content #i-need-login {
+        text-decoration: underline;
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-1 {
+        padding: 44px 0;
+    }
+    .the-box-wrapper .register-container .register-content .step-1 a {
+        display: inline-block;
+        height: 55px;
+        font-size: 20px;
+        line-height: 55px;
+        -webkit-border-radius: 28px;
+        -moz-border-radius: 28px;
+        border-radius: 28px;
+        -webkit-box-shadow: 0 0 18px #ffffff;
+        -moz-box-shadow: 0 0 18px #ffffff;
+        box-shadow: 0 0 18px #ffffff;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s ;
+        -ms-transition: all .3s ;
+        -o-transition: all .3s ;
+        transition: background-color, color 0.3s;
+        margin-top: 44px;
+        width: 174px;
+        color: #3eb8e3;
+        background-color: #FFFFFF;
+    }
+    .the-box-wrapper .register-container .register-content .step-1 a:hover {
+        color: #ffffff;
+        background-color: #fedb1c;
+        -webkit-box-shadow: 0 0 18px #fedb1c;
+        -moz-box-shadow: 0 0 18px #fedb1c;
+        box-shadow: 0 0 18px #fedb1c;
+    }
+    .the-box-wrapper .register-container .register-content .step-1 a:active {
+        -webkit-box-shadow: 0 0 20px #ffffff;
+        -moz-box-shadow: 0 0 20px #ffffff;
+        box-shadow: 0 0 20px #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul {
+        padding-top: 50px;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul li {
+        position: relative;
+        padding: 10px 20px;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul li img {
+        position: absolute;
+        left: 34px;
+        top: 27px;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul input {
+        width: 100%;
+        height: 55px;
+        padding: 0 20px 0 40px;
+        box-sizing: border-box;
+        font-size: 14px;
+        line-height: 55px;
+        -webkit-border-radius: 28px;
+        -moz-border-radius: 28px;
+        border-radius: 28px;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s ;
+        -ms-transition: all .3s ;
+        -o-transition: all .3s ;
+        transition: background-color, color 0.3s;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 p {
+        font-size: 14px;
+        color: #ffffff;
+        padding: 10px 20px ;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 .line-through:before,
+    .the-box-wrapper .register-container .register-content .step-2 .line-through:after {
+        content: ' ';
+        display: block;
+        position: relative;
+        top: 9px;
+        float: left;
+        width: 105px;
+        height: 1px;
+        background-color: #95cdd1;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 .line-through:after {
+        float: right;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 .the-third {
+        padding-bottom: 4px;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 .the-third h2 a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 0;
+        background-color: #ffffff;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 .the-third h2 a img {
+        width: 20px;
+        line-height: 40px;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 #js-sign-in {
+        display: inline-block;
+        height: 55px;
+        font-size: 20px;
+        line-height: 55px;
+        -webkit-border-radius: 28px;
+        -moz-border-radius: 28px;
+        border-radius: 28px;
+        -webkit-box-shadow: 0 0 18px #ffffff;
+        -moz-box-shadow: 0 0 18px #ffffff;
+        box-shadow: 0 0 18px #ffffff;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s ;
+        -ms-transition: all .3s ;
+        -o-transition: all .3s ;
+        transition: background-color, color 0.3s;
+        width: 100%;
+        color: #ffffff;
+        background-color: #fedb1c;
+        -webkit-box-shadow: 0 0 18px #fedb1c;
+        -moz-box-shadow: 0 0 18px #fedb1c;
+        box-shadow: 0 0 18px #fedb1c;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 #js-forget-pwd {
+        margin-left: 20px;
+        float: left;
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 #js-forget-pwd:hover {
+        text-decoration: underline;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 #i-need-regist {
+        float: right;
+        margin-right: 20px;
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 #i-need-regist i {
+        text-decoration: underline;
+        font-weight: normal;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul {
+        padding-top: 14px;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul #i-agree {
+        display: inline;
+        width: 15px;
+        height: 15px;
+        padding: 5px;
+        vertical-align: middle;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul #contract-detail {
+        text-decoration: underline;
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-2 ul span {
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-phone h1 {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-email {
+        padding: 20px 10px;
+    }
+    .the-box-wrapper .register-container .register-content .step-email h1,
+    .the-box-wrapper .register-container .register-content .step-email #login-my-email {
+        font-size: 16px;
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content .step-email #login-my-email {
+        text-decoration: underline;
+    }
+    .the-box-wrapper .register-container .register-content .step-email i.strong {
+        font-size: 18px;
+        color: #ffffff;
+    }
+    .the-box-wrapper .register-container .register-content #vericode {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        width: 50px;
+        margin: 30px 0;
+    }
+    .the-box-wrapper .register-container .register-content #resend-phone {
+
+        display: inline-block;
+        padding: 0px 16px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+
+        margin: 0 6px;
+        font-size: 14px;
+        white-space: nowrap;
+        box-sizing: border-box;
+        background-color: rgb(16, 208, 216);
+        color: #FFFFFF;
+
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        -ms-transition: all .5s;
+        -o-transition: all .5s;
+        transition: all .5s;
+    }
+    .the-box-wrapper .register-container .register-content #js-sign-up,
+    .the-box-wrapper .register-container .register-content #js-confirm {
+        display: inline-block;
+        height: 55px;
+        font-size: 20px;
+        line-height: 55px;
+        -webkit-border-radius: 28px;
+        -moz-border-radius: 28px;
+        border-radius: 28px;
+        -webkit-box-shadow: 0 0 18px #ffffff;
+        -moz-box-shadow: 0 0 18px #ffffff;
+        box-shadow: 0 0 18px #ffffff;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s ;
+        -ms-transition: all .3s ;
+        -o-transition: all .3s ;
+        transition: background-color, color 0.3s;
+        width: 100%;
+        color: #ffffff;
+        background-color: #fedb1c;
+        -webkit-box-shadow: 0 0 18px #fedb1c;
+        -moz-box-shadow: 0 0 18px #fedb1c;
+        box-shadow: 0 0 18px #fedb1c;
+    }
+    .the-box-wrapper .register-container .register-content #js-confirm {
+        width: 90%;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+    /*the box wrapper*/
+    @media screen and (max-width: 768px){
+        .the-box-wrapper .login-container,.the-box-wrapper .register-container{
+            width: 300px;
+        }
+        .the-box-wrapper .register-container .register-content .step-2 .line-through:before,
+        .the-box-wrapper .register-container .register-content .step-2 .line-through:after {
+
+            width: 80px;
+
+        }
+    }
+
+</style>
+<div class="register-container hide">
+    <div class="register-header">
+        <a href="javascript:void(0);" class="string"></a>
+        <a href="javascript:void(0);" class="login-close-btn"><img src="http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/close-btn.png" alt="关闭"></a>
+        <div>
+            <h1>温馨提示：建议老板使用手机号注册</h1>
+        </div>
+    </div>
+    <div class="register-content">
+        <div class="step-1 hide">
+            <a href="javascript:void(0);" data-type="member">义工注册</a>
+            <a href="javascript:void(0);" data-type="boss">商家注册</a>
+        </div>
+        <div class="step-2 hide">
+            <ul>
+                <li><img src="http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/iconfont-denglu.png" alt="用户名"><input type="text" name="username" id="username-4reg" maxlength="18" placeholder="请输入您的手机号/邮箱"><i class="error">用户名错误</i></li>
+                <li><img src="http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/iconfont-mima.png" alt="密码"><input type="password" name="password" id="password-4reg" maxlength="18" placeholder="请输入密码"><i class="error">用户名错误</i></li>
+                <li><img src="http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/iconfont-mima.png" alt="密码"><input type="password" maxlength="18" id="password-4reg-2" placeholder="请再一次输入密码"><i class="error">用户名错误</i></li>
+                <li><input type="checkbox" name="agree" id="i-agree"><span>已阅读并同意</span><a href="javascript:void(0)" id="contract-detail">《用户服务协议》</a></li>
+                <li><a href="javascript:void(0);" id="js-sign-up">获取验证信息</a></li>
+            </ul>
+            <p class="foo">已有账号 <a href="javascript:void(0);" id="i-need-login">立即登录</a></p>
+            <p class="line-through">第三方登录</p>
+            <div class="the-third">
+                <h2 class="cell"><a href="https://graph.qq.com/oauth2.0/authorize?response_type=token&client_id=101308377&redirect_uri=http%3A%2F%2Fwww.hiyouther.com/html/mod/qqLink.html&scope=get_user_info" title="使用QQ登陆" id="js-3-qq2"><img src="http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/iconfont-qq.png" alt="QQ"></a></h2>
+                <h2 class="cell hide"><a href="javascript:void(0);" title="使用微博登陆" id="js-3-wb2"><img src="http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/iconfont-weibo.png" alt="微博"></a></h2>
+                <h2 class="cell hide"><a href="javascript:void(0);" title="使用微信登陆" id="js-3-wx2"><img src="http://hiyouther.img-cn-shanghai.aliyuncs.com/img/mod/iconfont-weixin.png" alt="微信"></a></h2>
+            </div>
+        </div>
+        <div class="step-phone hide">
+            <h1>最后一步,请输入您收到的验证码:</h1>
+            <p><input type="text" maxlength="4" placeholder="验证码" id="vericode"><a href="javascript:void(0);"  id="resend-phone">再次发送验证码(60)</a></p>
+            <p><a href="javascript:void(0);" id="js-confirm">验证</a></p>
+        </div>
+        <div class="step-email hide">
+            <h1>验证邮件已经发送到您的电子邮箱账户<br>(<i class="strong">123@abc.abc</i>)<br><a href="javascript:void(0);" id="login-my-email" title="若点击无效,请自行登录">点此登录邮箱.</a></h1>
+        </div>
+    </div>
+</div>
+<script>
+    "use strict";
+    require(['jquery', 'lib/common', 'business/report', 'business/router', 'business/jalert'], function ($, common, report, router, jalert) {
+        var _public = {l:{},r:{}}
+        var _private = {};
+
+        _public.dom = function(){
+
+            //init
+            var top = "100px";
+            if($("body").width()<768){
+                top = "20px";
+            }
+            $(".login-container").css({display:"none"});
+            $(".register-container").show().animate({"margin-top":top,display:"block"},600);
+            $(".overlay-login").eq(0).fadeIn(600);
+            $(".register-container").find(".step-1").show();
+
+
+            var $register = $(".the-box-wrapper .register-container");
+            //什么类型
+            $register.find(".step-1").on("click","a", function () {
+                if($(this).data("type") == "member"){
+                    _public.r.type = "member";
+                }else if($(this).data("type") == "boss"){
+                    _public.r.type = "boss";
+                }
+                $register.find(".register-header div").eq(0).slideUp();
+                $register.find(".step-1").slideUp();
+                $register.find(".step-2").slideDown();
+            });
+
+
+            $("#username-4reg").on({
+                input: function () {
+                    $(this).next().text($(this).val().length).addClass("all-right").fadeIn()
+                },
+                blur: function () {
+
+                    if(/^1\d{10}/.test($(this).val())){
+
+                        if($(this).val().length!=11){
+                            $(this).next().text("手机号码位数不正确!").removeClass("all-right").fadeIn()
+                        }else{
+                            $(this).next().html("手机号码&radic;").addClass("all-right").fadeIn()
+                        }
+
+                    }else if(  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test($(this).val())){
+                        $(this).next().html("电子邮件&radic;").addClass("all-right").fadeIn()
+                    }else{
+                        $(this).next().html("请输入正确的手机号码/邮箱&times;").removeClass("all-right").fadeIn()
+                    }
+                },
+                keydown: function (e) {
+                    if (e.keyCode == 13) {
+                        $("#password-4reg").focus();
+                    }
+                }
+            });
+            $("#password-4reg").on({
+                input: function () {
+                    $(this).next().text($(this).val().length).addClass("all-right").fadeIn()
+                },
+                blur: function () {
+                    if($(this).val().length<6){
+                        $(this).next().text("密码长度小于6位!").removeClass("all-right").fadeIn()
+                    }else if(!/^[A-Za-z0-9_]{6,18}$/.test($(this).val())){
+                        $(this).next().text("密码请设置为6-18位的任意大小写字母/数字/下划线").removeClass("all-right").fadeIn()
+                    }else {
+                        $(this).next().html("&radic;").addClass("all-right").fadeIn()
+                    }
+
+                },
+                keydown: function (e) {
+                    if (e.keyCode == 13) {
+                        $("#password-4reg-2").focus();
+                    }
+                }
+            });
+            $("#password-4reg-2").on({
+                input: function () {
+                    $(this).next().text($(this).val().length).addClass("all-right").fadeIn()
+                },
+                blur: function () {
+                    if($(this).val().length<6){
+                        $(this).next().text("密码长度小于6位!").removeClass("all-right").fadeIn()
+                    }else if(!(/^[A-Za-z0-9_]{6,18}$/.test($(this).val()))){
+                        $(this).next().text("密码请设置为6-18位的任意大小写字母/数字/下划线").removeClass("all-right").fadeIn()
+                    }else if($(this).val()!=$("#password-4reg").val()){
+                        $(this).next().html("两次密码不一致!&times;").removeClass("all-right").fadeIn()
+                    }else{
+                        $(this).next().html("&radic;").addClass("all-right").fadeIn()
+                    }
+                },
+                keydown: function (e) {
+                    if (e.keyCode == 13) {
+                        $("#js-sign-up").click();
+                    }
+                }
+            });
+
+            $("#i-need-login").click(function () {
+                $(".login-close-btn").click();
+                setTimeout(function(){
+                    $("#btn-login").click();
+                },650)
+            });
+
+
+            $("#contract-detail").click(function () {
+                window.open(router.getUrl("contract"),'contract','height=500,width=400,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+            });
+
+            $("#js-sign-up").click(function () {
+
+
+                var phone_reg = /^1\d{10}$/,
+                        email_reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+                        username = $("#username-4reg").val(),
+                        password = $("#password-4reg").val(),
+                        password2 = $("#password-4reg-2").val(),
+                        option = phone_reg.test(username) ? 'mobile' : 'email';
+
+
+//用户名验证
+                if(username.length == 0){
+                    $("#username-4reg").next().text("用户名不能为空!").removeClass("all-right").fadeIn();
+                    return false;
+                }else{
+
+                    if(/^1\d{10}/.test(username)){
+                        if(username.length!=11){
+                            $("#username-4reg").next().text("手机号码位数不正确!").removeClass("all-right").fadeIn();
+                            return false;
+                        }else{
+                            $("#username-4reg").next().html("手机号码&radic;").addClass("all-right").fadeIn()
+                        }
+                    }else if( /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(username)){
+                        $("#username-4reg").next().html("电子邮件&radic;").addClass("all-right").fadeIn()
+                    }else{
+                        $("#username-4reg").next().html("请输入正确的手机号码/邮箱&times;").removeClass("all-right").fadeIn();
+                        return false;
+                    }
+                }
+
+//密码验证
+                if(password.length<6){
+                    jalert.error("密码长度小于6位!");
+                    return false;
+                }else if(!/^[A-Za-z0-9_]{6,18}$/.test(password)){
+                    jalert.error("密码请设置为6-18位的任意大小写字母/数字/下划线");
+                    return false;
+                }else if(password != password2){
+                    jalert.error("两次密码不一致!&times;");
+                    return false;
+                }
+
+//用户协议验证
+                if(!$("#i-agree").prop("checked")){
+                    jalert.confirm("尊敬的用户,您还未阅读并同意用户服务协议,是否现在查看?\n这对您很重要.","查看","不", function (ok) {
+                        if(ok){
+                            $("#contract-detail").click();
+                        }
+                    });
+                    return false;
+                }
+
+
+                common.send('register', {
+                    type: _public.r.type,
+                    option: option,
+                    account: username,
+                    pwd:password
+                }).done(function (result) {
+                    if (result && result.code == 1) {
+                        jalert.alert(result.info);
+                        if(option == "mobile"){
+                            $("#resend-phone").addClass("disabled");
+                            var count_1 = 59;
+                            var timer_1 = setInterval(function () {
+                                if(count_1 <0){
+                                    $("#resend-phone").text("再次发送验证码").removeClass("disabled")
+                                    clearInterval(timer_1);
+                                }else{
+                                    $("#resend-phone").text("再次发送验证码(" + count_1 +")")
+                                    count_1 = count_1 - 1;
+                                }
+                            },1000);
+
+                            $register.find(".step-2").slideUp();
+                            $register.find(".step-phone").slideDown();
+                        }else if(option == "email"){
+                            $register.find(".step-2").slideUp();
+                            $register.find(".step-email").slideDown().find(".strong").text(username);
+
+                            var hash = {
+                                'qq.com': 'http://mail.qq.com',
+                                'gmail.com': 'http://mail.google.com',
+                                'sina.com': 'http://mail.sina.com.cn',
+                                '163.com': 'http://mail.163.com',
+                                '126.com': 'http://mail.126.com',
+                                'yeah.net': 'http://www.yeah.net/',
+                                'sohu.com': 'http://mail.sohu.com/',
+                                'tom.com': 'http://mail.tom.com/',
+                                'sogou.com': 'http://mail.sogou.com/',
+                                '139.com': 'http://mail.10086.cn/',
+                                'hotmail.com': 'http://www.hotmail.com',
+                                'live.com': 'http://login.live.com/',
+                                'live.cn': 'http://login.live.cn/',
+                                'live.com.cn': 'http://login.live.com.cn',
+                                '189.com': 'http://webmail16.189.cn/webmail/',
+                                'yahoo.com.cn': 'http://mail.cn.yahoo.com/',
+                                'yahoo.cn': 'http://mail.cn.yahoo.com/',
+                                'eyou.com': 'http://www.eyou.com/',
+                                '21cn.com': 'http://mail.21cn.com/',
+                                '188.com': 'http://www.188.com/',
+                                'foxmail.com': 'http://www.foxmail.com'
+                            };
+
+                            var url = username.split("@")[1];
+
+                            $("#login-my-email").attr("href", hash[url])
+
+
+                        }
+
+                    } else {
+                        jalert.error(result.info);
+                    }
+                }).error(function (result) {
+                    jalert.error("请求错误\n状态码:"+result.status +"\n状态说明:"+ result.statusText||"无任何返回值");
+                });
+
+
+
+            });
+
+            $(".js-3-qq2").click(function (e) {
+                var $this = $(this);
+                common.send("qqLink",{type:_public.r.type}).done(function(result){
+                    if(result && result.code ==1){
+                        common.skipUri($this.attr("href"));
+                    }
+                }).error(function (result) {
+                    jalert.error("请求错误\n状态码:"+result.status +"\n状态说明:"+ result.statusText||"无任何返回值");
+                });
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            })
+
+//再次发送验证码
+
+            $("#resend-phone").click(function () {
+                $("#js-sign-up").click();
+            });
+
+            $("#js-confirm").click(function () {
+                var vercode = $("#vericode").val().trim();
+                if(vercode.length !=4){jalert.error("请输入您收到的验证码!");return false;}
+                var phone_reg = /^1\d{10}$/,
+                        username = $("#username-4reg").val(),
+                        password = $("#password-4reg").val(),
+                        option = phone_reg.test(username) ? 'mobile' : 'email';
+
+                common.send('register', {
+                    type: _public.r.type,
+                    option: option,
+                    verid: parseInt(vercode),
+                    pwd:password
+                }).done(function (result) {
+                    if (result && result.code == 1) {
+                        report.forlogin();
+                        jalert.alert(result.info,"确定", function () {
+                            $register.find(".step-phone").slideUp();
+                            $(".login-close-btn").click();
+                        })
+
+                    } else {
+                        jalert.error(result.info);
+                    }
+                }).error(function (result) {
+                    jalert.error("请求错误\n状态码:"+result.status +"\n状态说明:"+ result.statusText||"无任何返回值");
+                });
+
+            });
+
+
+            $(".login-close-btn").off();
+            $(".login-close-btn").click(function () {
+                $(".login-container").animate({"margin-top":"-900px"},600, "linear").animate({display:"none"},10);
+                $(".register-container").animate({"margin-top":"-900px"},600,"linear").animate({display:"none"},10);
+                $(".overlay-login").eq(0).fadeOut(600);
+                _public.l = {};
+                _public.r = {};
+                $(".step-1,.step-2,.step-phone,.step-email").slideUp();
+                $(".login-header div,.register-header div").show();
+            });
+        };
+        _public.dom();
+    })
+</script>

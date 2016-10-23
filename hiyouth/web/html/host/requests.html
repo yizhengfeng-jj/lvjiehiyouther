@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>简历汇总-嗨柚</title>
+    <link rel="stylesheet" type="text/css" href="../../css/share/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/share/ui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/host/requests.css"/>
+</head>
+
+<body>
+<!-- header-->
+<div class="header">
+    <div class="header-content">
+        <div class="headerWrapper fix">
+            <div class="header-content-logo fl">
+                <a href="../index.html"><img src="../../img/header/logo.png" alt="logo"/></a>
+            </div>
+            <div class="header-content-nav fr">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../about-us.html">关于我们</a></li>
+                    <li><a id="x-place-1">加载中</a></li>
+                    <li><a id="x-place-2">加载中</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /header -->
+
+<div class="container-wrapper">
+    <div class="container">
+        <div class="box">
+            <div class="box-header ">
+                <h1 class="title">简历汇总</h1>
+            </div>
+            <div class="box-content ">
+                <div class="tab-group clear-fix">
+                    <ul id="delegate">
+                        <li><a href="javascript:void(0);" class="tab tab-active">全部</a></li>
+                        <li><a href="javascript:void(0);" class="tab">未通过</a></li>
+                        <li><a href="javascript:void(0);" class="tab">已通过</a></li>
+                        <li><a href="javascript:void(0);" class="tab">待评分</a></li>
+                        <li><a href="javascript:void(0);" class="tab">已评分</a></li>
+                    </ul>
+                </div>
+                <div style="padding-left: 3em">
+                    <p class="text-theme">温馨提示:<br>1.请查看义工们的简历(点击'查看详情')，联系他们并确定他们要来工作后再点“通过”哦 <br>2.若义工已经到店里工作了并且做完工作了,请点“结束工作”哦,然后就可以评价了~ <br>3.结束工作后,请对义工进行准确、中肯的评分</p>
+                </div>
+                <ul class="card-list" id="all">
+                </ul>
+                <ul class="card-list hide" id="received">
+                </ul>
+                <ul class="card-list hide" id="accepted">
+                </ul>
+                <ul class="card-list hide" id="completed">
+                </ul>
+                <ul class="card-list hide" id="finished">
+
+                </ul>
+
+
+            </div>
+            <!--.box-content-->
+
+        </div>
+        <div class="bottom">
+            <div class="checkbox-t fl">
+                <input type="checkbox" class="check-box" id="li-all">
+                <label for="li-all" class="vhide"></label>
+            </div>
+            <a href="javascript:void(0);">本页全选</a>
+            <a href="javascript:void(0)" class="btn btn-primary">通过</a>
+            <a href="javascript:void(0);" class="btn btn-neg">拒绝</a>
+            <a href="javascript:void(0);" class="btn btn-neg">删除</a>
+        </div>
+        <!--
+     pagination
+     -->
+        <div class="pagination-wrapper">
+            <ul class="pagination">
+                <li><a href="javascript:void(0);" class="pre"></a></li>
+                <li><a href="javascript:void(0);">1</a></li>
+                <li><a href="javascript:void(0);">2</a></li>
+                <li><a href="javascript:void(0);">3</a></li>
+                <li><a href="javascript:void(0);">4</a></li>
+                <li><a href="javascript:void(0);">5</a></li>
+                <li><a href="javascript:void(0);">6</a></li>
+                <li><a href="javascript:void(0);">7</a></li>
+                <li><a href="javascript:void(0);">8</a></li>
+                <li><a href="javascript:void(0);">9</a></li>
+                <li><a href="javascript:void(0);">10</a></li>
+                <li><a href="javascript:void(0);">11</a></li>
+                <li><a href="javascript:void(0);" class="next"></a></li>
+                <li>跳转到 ：&nbsp;<input type="text" id="jumpTo"/></li>
+                <li><a href="javascript:void(0);" class="go">GO</a></li>
+            </ul>
+        </div>
+        <!--
+        .pagination
+        -->
+    </div>
+</div>
+<!-- 评分 -->
+<div class="judge hide">
+    <ul>
+        <li>符合描述:<a href="javascript:void(0);" title="点击评分"><img src="../../img/icons/halfStar.png" alt="星星"
+                                                                 class="halfStar"><img
+                src="../../img/icons/halfStar.png"
+                alt="星星" class="halfStar"><img
+                src="../../img/icons/halfStar.png" alt="星星" class="halfStar"><img src="../../img/icons/halfStar.png"
+                                                                                  alt="星星" class="halfStar"><img
+                src="../../img/icons/halfStar.png" alt="星星" class="halfStar"></a></li>
+        <li>性格性情:<a href="javascript:void(0);" title="点击评分"><img src="../../img/icons/halfStar.png" alt="星星"
+                                                                 class="halfStar"><img
+                src="../../img/icons/halfStar.png"
+                alt="星星" class="halfStar"><img
+                src="../../img/icons/halfStar.png" alt="星星" class="halfStar"><img src="../../img/icons/halfStar.png"
+                                                                                  alt="星星" class="halfStar"><img
+                src="../../img/icons/halfStar.png" alt="星星" class="halfStar"></a></li>
+        <li>工作能力:<a href="javascript:void(0);" title="点击评分"><img src="../../img/icons/halfStar.png" alt="星星"
+                                                                 class="halfStar"><img
+                src="../../img/icons/halfStar.png" alt="星星" class="halfStar"><img src="../../img/icons/halfStar.png"
+                                                                                  alt="星星" class="halfStar"><img
+                src="../../img/icons/halfStar.png" alt="星星" class="halfStar"><img src="../../img/icons/halfStar.png"
+                                                                                  alt="星星" class="halfStar"></a></li>
+    </ul>
+    <p><a href="javascript:void(0);" class="btn btn-warn">确认</a></p>
+</div>
+<!-- toolbor -->
+<div class="toolbar">
+    <a id="scrollTop" href="javascript:void(0);"></a>
+</div>
+<!-- /toolbor -->
+<!-- footer-->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footerWrapper">
+            <div class="footer-content-text ">
+                <ul>
+                    <li>
+                        <h2>快速导航</h2>
+                        <p><a href="javascript:void(0);">我是义工</a></p>
+                        <p><a href="javascript:void(0);">我是商家</a></p>
+                        <p><a href="javascript:void(0);">友情链接</a></p>
+                    </li>
+                    <li>
+                        <h2>帮助中心</h2>
+                        <p><a href="javascript:void(0);">常见问题</a></p>
+                        <p><a href="../contract.html" target="_blank">用户协议</a></p>
+                    </li>
+                    <li>
+                        <h2>反馈</h2>
+                        <p><a href="javascript:void(0);">意见建议</a></p>
+                        <p><a href="javascript:void(0);">举报</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-content-conact">
+                <ul>
+                    <li class="hide">
+                        <img src="../../img/footer/footer1.png" alt="微博图标"/>
+                        <p>嗨柚旅行微博</p>
+                        <a href="http://weibo.com/hiyouther" title="点击关注我们的微博"><img src="../../img/footer/footer2.png"
+                                                                            alt="微博图标"/></a>
+                    </li>
+                    <li>
+                        <img class="erweima" src="../../img/footer/8cmerweima.jpg" alt="微信公众号二维码"/>
+                        <p>嗨柚微信公众号</p>
+                        <p>hiyouthtour</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright&copy;2015-2016 hiyouther.com All Rights Reserved</p>
+        <p><a href="http://www.miitbeian.gov.cn" title="http://www.miitbeian.gov.cn">渝ICP备16003213号-1</a></p>
+    </div>
+</div>
+
+<!-- 所有模板消息 -->
+<script type="text/html" id="apply-list">
+    <%if(data != undefined && data.length != 0){%>
+    <%for(var i = 0; i < data.length; i++) {%>
+    <li data-rid="<%=data[i].rid%>" data-aid="<%=data[i].aid%>" data-mid="<%=data[i].mid%>" data-sid="<%=data[i].schedule %>">
+        <div class="card-left">
+            <div class="checkbox-t">
+                <input type="checkbox" class="check-box" id="li-<%=data[i].aid %>">
+                <label for="li-<%=data[i].aid %>" ></label>
+            </div>
+            <div class="portrait-70 fl bdr-227">
+                <img src="<%= data[i].img%>" alt="头像"/>
+            </div>
+            <a class="ell" title="<%= data[i].name %>"><%= data[i].name %>
+                <% if(data[i].sex == "man"){ %>
+                <span class="man"></span>
+                <% } else { %>
+                <span class="woman"></span>
+                <% } %>
+            </a>
+        </div>
+        <div class="cell">
+            <p>到岗时间:<%= data[i].time %>
+                <span class="text-theme">
+                    <% if(data[i].schedule == 1000){ %>已收到
+                    <% } else if(data[i].schedule == 2000) { %> 已通过
+                    <% } else if(data[i].schedule == 1001 || data[i].schedule == 1011) { %> 未通过
+                    <% } else if(data[i].schedule == 3000) { %> 待评分
+                    <% } else if(data[i].schedule == 3010|| data[i].schedule == 3110 ) { %> 已评分
+                    <% } %>
+                </span>
+            </p>
+        </div>
+        <div class="card-center">
+
+        </div>
+        <div class="card-right">
+            <% if(data[i].schedule == 1000){ %>
+            <p><a href="javascript:void(0);" class="btn btn-primary">通过</a><a href="javascript:void(0);" class="btn btn-primary">拒绝</a></p>
+            <p><a href="javascript:void(0);" class="h-c-theme">查看详情</a>
+            </p>
+             <% }else if(data[i].schedule == 1001 || data[i].schedule == 1011) { %>
+            <p class="text-gray single">已拒绝</p>
+            <p> <a href="javascript:void(0);" class="h-c-theme">查看详情</a>
+                &nbsp;<a href="javascript:void(0);" class="h-c-theme">删除</a></p>
+            <% } else if(data[i].schedule == 2001) { %>
+            <p class="text-gray single">已取消出发</p>
+            <% } else if(data[i].schedule == 2000) { %>
+            <p class="single"><a href="javascript:void(0);" class="btn btn-green ">结束工作</a></p>
+            <p><a href="javascript:void(0);" class="h-c-theme">取消出发</a><a href="javascript:void(0);" class="h-c-theme">查看详情</a></p>
+             <% } else if(data[i].schedule == 3000 || data[i].schedule == 3010) { %>
+            <p class="single"><a href="javascript:void(0);" class="btn btn-warn">评分</a></p>
+            <p> <a href="javascript:void(0);" class="h-c-theme">查看详情</a></p>
+            <% } else if(data[i].schedule == 3110 ||data[i].schedule == 3100) { %>
+            <p class="single"><a href="javascript:void(0);" class="btn btn-warn">已评分</a></p>
+            <p> <a href="javascript:void(0);" class="h-c-theme">查看详情</a></p>
+            <% } %>
+        </div>
+    </li>
+    <%}%>
+    <%}else {%>
+    <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+    <%}%>
+</script>
+
+
+
+<!--modal-->
+<div class="tk-detail hide">
+    <div class="box">
+        <div class="box-header">
+            <h1 class="title" >义工简历详情</h1>
+        </div>
+        <div class="box-content">
+            <h1 class="title">姓名</h1>
+            <p id="md-name">???</p>
+            <h1 class="title">年龄</h1>
+            <p id="md-age">???</p>
+            <h1 class="title hide" >个人照片</h1>
+            <img src="" alt="个人照片" class="hide" id="js-member-life">
+            <h1 class="title">联系方式</h1>
+            <p id="md-contact"></p>
+            <h1 class="title">个性签名</h1>
+            <p id="md-sign"></p>
+            <h1 class="title">标签</h1>
+            <p id="md-tag"></p>
+            <h1 class="title">个人简介</h1>
+            <p id="md-info"></p>
+        </div>
+        <div class="option">
+            <p><a href="javascript:void(0);" class="btn btn-primary" id="md-close">关闭</a></p>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+<script src="../../js/lib/require.js"></script>
+<script type="text/javascript" rel="script">
+    require.config({
+        baseUrl: "../../js",
+        paths: {jquery: 'lib/jq',
+            domReady: 'lib/require.domready'
+        }
+    });
+    require(['domReady', 'page/host.requests'], function (domReady, requests) {
+        domReady(function () {
+            requests.init()
+        });
+    });
+</script>
+
+</body>
+
+</html>

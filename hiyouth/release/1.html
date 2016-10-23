@@ -1,0 +1,38 @@
+<script type="text/html">
+    <% for(var i = 0; i < data.length; i++){ %>
+    <div class="pocker">
+        <div class="poster">
+            <img src="<%=data[i].photo%>" alt="客栈图片"/>
+        </div>
+        <div class="content">
+            <a class="pin">
+                <%if(data[i].ifcollect){%> <img src="img/icons/favorite.png" alt="收藏">已收藏
+                <%}else%{> <img src="img/icons/favorite.png" alt="收藏">收藏
+                <%}%>
+            </a>
+
+            <h1 class="text-theme"><a class="ell" title="<%=data[i].name%>"><%=data[i].name%></a>
+                <% if(data[i].authentic == 0){ %>
+                    <img src="img/icons/idcardCi.png" alt="身份证未认证">
+                    <img src="img/icons/idcardCi.png" alt="店铺未认证">
+                <% }else if(data[i].authentic == 1){ %>
+                    <img src="img/icons/idcardCi.png" alt="身份证已认证">
+                    <img src="img/icons/idcardCi.png" alt="店铺未认证">
+                <% }else if(data[i].authentic == 2){ %>
+                    <img src="img/icons/idcardCi.png" alt="身份证未认证">
+                    <img src="img/icons/idcardCi.png" alt="店铺已认证">
+                <% }else if(data[i].authentic == 4){ %>
+                    <img src="img/icons/idcardCi.png" alt="身份证已认证">
+                    <img src="img/icons/idcardCi.png" alt="店铺已认证">
+                <% } %>
+            </h1>
+
+            <p>需要人数： <%=number%>人</p>
+
+            <p>需要时间：<%=month%></p>
+
+            <p>整体评分： <img src="img/icons/fullScore.png" alt=""><img src="img/icons/halfScore.png" alt=""></p>
+        </div>
+    </div>
+    <%}%>
+</script>

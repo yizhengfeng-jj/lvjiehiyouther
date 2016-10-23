@@ -1,0 +1,40 @@
+<script id="card-template" type="text/html">
+    <%if( data !=undefined && data.length != 0 ){%>
+    <% for(var i = 0; i < data.length; i++){ %>
+    <li data-hid="<%= data[i].hid %>">
+        <div class="portrait-70 bdr-227 fl">
+            <img src="<%= data[i].img %>" alt="封面"/>
+        </div>
+        <p class="name ell" title="<%= data[i].name%>"><%= data[i].name%></p>
+        <p class="location ell" title="<%= data[i].address%>"><%= data[i].address%></p>
+        <p class="Ci">
+            <% if(data[i].authentic == 0){ %>
+            <img class="vam" src="../../img/icons/storeCiGray.png"/>
+            <% } else if(data[i].authentic == 1 || data[i].authentic == 4) {%>
+            <img class="vam" src="../../img/icons/storeCi.png"/>
+            <% } %>
+        </p>
+        <p class="score">
+            <% for(var j = 0; j < data[i].score; j++) { %>
+            <img src="../../img/icons/fullScore.png" title="评分" alt="客栈评分"/>
+            <% } %>
+            <% for(var j = data[i].score; j < 5; j++) { %>
+            <img src="../../img/icons/zeroScore.png" title="评分" alt="客栈评分"/>
+            <% } %>
+        </p>
+        <div class="option  fr">
+            <p class="abs-toggle"><a href="javascript:void(0);" class=" btn btn-primary">详情</a></p>
+            <ul class="abs-list pabs">
+                <li><a href="javascript:void(0);">发布招聘</a></li>
+                <li><a href="javascript:void(0);">发布历史</a></li>
+                <li><a href="javascript:void(0);">简历汇总</a></li>
+                <li><a href="javascript:void(0);">商家认证</a></li>
+            </ul>
+            <p><a href="javascript:void(0);" class="btn btn-neg">删除</a></p>
+        </div>
+    </li>
+    <% } %>
+    <% }else{ %>
+    <p class="text-theme no_data">:( 啊哦,您还没有客栈,快添加一个吧!</p>
+    <% } %>
+</script>

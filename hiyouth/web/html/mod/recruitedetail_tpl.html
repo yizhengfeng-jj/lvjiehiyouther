@@ -1,0 +1,126 @@
+<script type="text/html" id="tag-question">
+    <% if(data != undefined && data.length !=0){%>
+    <%for(var i = 0; i < data.length; i++) {%>
+    <div class="question-container">
+        <h3 class="question" data-cid="<%= data[i].id %>" data-aid="<%= data[i].user.id %>"><%= data[i].content %><span
+                class="time"><%= data[i].time %></span> <a href="javascript:void(0);" class="fr replyBtn">回答问题</a></h3>
+        <%if(data[i].ifanswer === 'yes'){%>
+        <div class="answer-container" data-cid="<%=data[i].id%>">
+
+        </div>
+        <div style="text-align: center">
+            <a style="padding: 10px 60px;background: #16d0d8;color: #fff;border-radius: 5px;" href="javscript:void(0)" data-cid="<%=data[i].id%>" data-page="2" class="load-more">加载更多</a>
+        </div>
+        <%}%>
+    </div>
+    <%}%>
+    <%}else{%>
+    <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+    <%}%>
+</script>
+<script type="text/html" id="tag-answer">
+    <%for(var i = 0; i < data.length; i++) {%>
+    <div class="answer">
+        <div class="words">
+            <div class="left">
+                <a href="javascript:void(0);" title="点击进入商家详情">
+                    <img class="portrait-72" src="<%=data[i].user.headpic %>" alt="logo-name">
+                </a>
+                <a href="javascript:void(0);" title="点击进入商家详情" data-cid="<%= data[i].id %>"
+                   data-aid="<%= data[i].user.id %>" class="name"><%= data[i].user.name %></a>
+                <a href="javascript:void(0);" title="点击进入商家详情" class="prop">
+                    <%if(data[i].user.type== "member") { %>
+                    义工
+                    <%}else{%>
+                    店主
+                    <%}%>
+                </a>
+                <%if(data[i].user.vercard!=0) { %>
+                <span><img src="../img/icons/idcardCi.png" alt="身份认证" title="身份已认证"></span>
+                <%}else{%>
+                <span><img src="../img/icons/idcardCiGray.png" alt="身份认证" title="身份未认证"></span>
+                <%}%>
+            </div>
+            <div class="right">
+                <p class="right-content">
+                    <%= data[i].content %>
+                </p>
+                <p class="time"><%= data[i].time %></p>
+                <!--<button type="button" class="replyBtn">回复</button>-->
+            </div>
+        </div>
+    </div>
+    <%}%>
+</script>
+<script type="text/html" id="tag-comment">
+    <% if(data != undefined && data.length != 0){%>
+    <%for(var i = 0; i < data.length; i++) {%>
+    <div class="words">
+        <div class="left">
+            <a href="javascript:void(0);" title="点击进入商家详情"><img class="portrait-72" src="../img/potrait.jpg"
+                                                                alt="logo-name"></a>
+            <a href="javascript:void(0);" title="点击进入商家详情" class="name"><%=data[i].user.name%></a>
+            <a href="javascript:void(0);" title="点击进入商家详情" class="prop">
+                <%if(data[i].user.type == "member"){%>
+                    义工
+                <%}else{%>
+                    店主
+                <%}%>
+
+            </a>
+                <span>
+                    <%if(data[i].vercard != 0) {%>
+                        <img src="../img/icons/idcardCi.png" alt="身份认证" title="身份已认证">
+                    <%}else{%>
+                          <img src="../img/icons/idcardCiGray.png" alt="身份认证" title="身份未认证">
+                    <%}%>
+                </span>
+        </div>
+        <div class="right">
+            <p class="right-content">
+                <%= data[i].content%>
+            </p>
+            <p class="time">
+                <%= data[i].time%>
+            </p>
+        </div>
+    </div>
+    <%}%>
+    <%}else {%>
+    <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+    <%}%>
+</script>
+<script type="text/html" id="tag-record">
+    <% if(data!= undefined && data.length!=0){%>
+    <table class="record-table">
+        <thead>
+        <tr class="blueCommon table-header">
+            <th>招聘名称</th>
+            <th>发布时间</th>
+            <th>投递人数</th>
+            <th>评论量</th>
+            <th>问答量</th>
+            <th>状态</th>
+        </tr>
+        </thead>
+        <tbody class="table-content">
+        <%for(var i = 0; i < data.length; i++) {%>
+        <tr data-aid="<%=data[i].id%>">
+            <td><%=data[i].name%></td>
+            <td><%=data[i].time%></td>
+            <td><%=data[i].number%></td>
+            <td><%=data[i].answer%></td>
+            <td><%=data[i].content%></td>
+            <%if(data[i].state == -1) {%>
+            <td><a class="grayCommon" href="javascript:void(0);">招聘结束</a></td>
+            <%}else{%>
+            <td><a class="blueCommon" href="javascript:void(0);">报名中</a></td>
+            <%}%>
+        </tr>
+        <%}%>
+        </tbody>
+    </table>
+    <%}else {%>
+    <p class="text-theme no_data">:( 啊哦,没有数据!</p>
+    <%}%>
+</script>

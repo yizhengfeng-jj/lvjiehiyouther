@@ -1,0 +1,167 @@
+<!--
+页面得到hostelid
+
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>商家认证-嗨柚</title>
+    <link rel="stylesheet" type="text/css" href="../../css/share/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/share/ui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/identification.css" />
+    <style>
+        form{
+            border: 1px solid #ddd;
+            width: 140px;
+        }
+    </style>
+</head>
+
+<body>
+<iframe src="" frameborder="0" name="hi-iframe" id="hi-iframe" style="display: none;"></iframe>
+<!-- header-->
+<div class="header">
+    <div class="header-content">
+        <div class="headerWrapper fix">
+            <div class="header-content-logo fl">
+                <a href="../index.html"><img src="../../img/header/logo.png" alt="logo" /></a>
+            </div>
+            <div class="header-content-nav fr">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../about-us.html">关于我们</a></li>
+                    <li><a id="x-place-1">加载中</a></li>
+                    <li><a id="x-place-2">加载中</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /header -->
+<div class="container-wrapper">
+    <div class="container">
+        <div class="box">
+            <div class="box-content">
+                <div class="tab-group clear-fix">
+                    <ul id="tabs">
+                        <li><a href="javascript:void(0);" class="tab  tab-active">商家认证</a></li>
+                    </ul>
+                </div>
+
+                <div id="hotel">
+                    <table>
+                        <colgroup>
+                            <col style="width: 140px">
+                            <col style="width: 180px">
+                            <col style="width: 160px">
+                            <col style="width:auto">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>营业执照:</th>
+                            <td>
+                                <form method="post" action="../../api/idval" enctype="multipart/form-data" target="hi-iframe" data-type="zhizhao">
+                                    <input type="hidden" name="funKey"/>
+                                    <input type="hidden" name="type"/>
+                                    <input type="hidden" name="hid" id="js-hid-vk"/>
+                                    <div class="display vhide">
+                                        <img src="" alt="营业执照"  id="h1-upload-img4"/>
+
+                                    </div>
+                                    <a href="javascript:void(0);" title="点击上传图片" id="h-upload4">+ 上传照片</a>
+                                    <input type="file" accept="image/*"  name="file" hidden id="h-photo-business">
+                                </form>
+                            </td>
+                            <th>营业执照拍照示例:</th>
+                            <td class="fix">
+                                <div class="fl">
+                                    <img src="../../img/etc/business.png" class="fl" alt="示例图片">
+                                </div>
+                                <ol type="1">
+                                    <li>正面拍摄营业执照.</li>
+                                    <li>营业执照必须要与法人相符.</li>
+                                    <li>必须跟客栈名称相同.</li>
+                                </ol>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p><a href="javascript:void(0);" id="h-submit" class="btn btn-warn">提交</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- toolbor -->
+<div class="toolbar">
+    <a id="scrollTop" href="javascript:void(0);"></a>
+</div>
+<!-- /toolbor -->
+<!-- footer-->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footerWrapper">
+            <div class="footer-content-text ">
+                <ul>
+                    <li>
+                        <h2>快速导航</h2>
+                        <p><a href="javascript:void(0);">我是义工</a></p>
+                        <p><a href="javascript:void(0);">我是商家</a></p>
+                        <p><a href="javascript:void(0);">友情链接</a></p>
+                    </li>
+                    <li>
+                        <h2>帮助中心</h2>
+                        <p><a href="javascript:void(0);">常见问题</a></p>
+                        <p><a href="../contract.html" target="_blank">用户协议</a></p>
+                    </li>
+                    <li>
+                        <h2>反馈</h2>
+                        <p><a href="javascript:void(0);">意见建议</a></p>
+                        <p><a href="javascript:void(0);">举报</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-content-conact">
+                <ul>
+                    <li class="hide">
+                        <img src="../../img/footer/footer1.png" alt="微博图标" />
+                        <p>嗨柚旅行微博</p>
+                        <a href="http://weibo.com/hiyouther" title="点击关注我们的微博"><img src="../../img/footer/footer2.png" alt="微博图标" /></a>
+                    </li>
+                    <li>
+                        <img class="erweima" src="../../img/footer/8cmerweima.jpg" alt="微信公众号二维码" />
+                        <p>嗨柚微信公众号</p>
+                        <p>hiyouthtour</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright&copy;2015-2016 hiyouther.com All Rights Reserved</p>
+        <p><a href="http://www.miitbeian.gov.cn" title="http://www.miitbeian.gov.cn">渝ICP备16003213号-1</a></p>
+    </div>
+</div>
+</body>
+<script src="../../js/lib/require.js"></script>
+<script src="../../util/plupload-2.1.2/js/plupload.full.min.js"></script>
+<script type="text/javascript" rel="script">
+    require.config({
+        baseUrl: "../../js",
+        paths: {
+            jquery: 'lib/jq',
+            domReady: 'lib/require.domready'
+        }
+    });
+    require(['domReady', 'page/host.verify'], function (domReady, verify) {
+        domReady(function () {
+            verify.init()
+        });
+    });
+</script>
+</html>

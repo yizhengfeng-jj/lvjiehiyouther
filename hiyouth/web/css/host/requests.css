@@ -1,0 +1,281 @@
+@charset "utf-8";
+
+body, html {
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+.header .header-content {
+    background-color: #FFFFFF;
+}
+
+.container-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.container {
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.box .hide {
+    display: none;
+}
+
+.card-list > li {
+    padding: 10px;
+    line-height: 34px;
+}
+
+.card-left {
+    float: left;
+    width: 325px;
+}
+
+.card-left > a {
+    font-size: 16px;
+    line-height: 18px;
+    display: inline-block;
+    padding-top: 16px;
+}
+
+.card-left > a:hover {
+    color: #10D0D8;
+}
+
+.card-left > p {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.card-left span {
+    margin-left: 10px;
+}
+
+.card-right, .card-center, .cell {
+    float: left;
+}
+
+.cell {
+    width: 230px;
+}
+
+.card-center {
+    width: 300px;
+}
+
+.card-center, .cell {
+    padding-top: 11px;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.card-right {
+    float: right;
+    width: 240px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 16px;
+    line-height: 25px;
+}
+
+.bottom {
+    line-height: 30px;
+    margin-top: 15px;
+}
+
+.bottom .checkbox-t {
+    margin: 12px 13px;
+}
+
+.judge {
+    position: absolute;
+    background-color: #ffffff;
+    width: 215px;
+    height: 130px;
+    -webkit-box-shadow: 0 6px 21px 1px gray;
+    -moz-box-shadow: 0 6px 21px 1px gray;
+    -ms-box-shadow: 0 6px 21px 1px gray;
+    box-shadow: 0 6px 21px 1px gray;
+    top: 0;
+    padding: 30px;
+}
+
+.judge ul {
+    display: table;
+    position: relative;
+}
+
+.judge ul li {
+    display: block;
+    width: 214px;
+    font-size: 16px;
+    line-height: 22px;
+    margin: 6px 0;
+}
+
+.judge ul li a {
+    vertical-align: middle;
+}
+
+.judge ul li a img {
+    margin: 0 5px;
+}
+
+.judge p {
+    text-align: center;
+    margin-top: 14px;
+}
+
+.container .card-list .single {
+    line-height: 50px;
+}
+
+.pagination-wrapper {
+    margin-top: 50px;
+}
+
+.checkbox-t {
+    position: relative;
+    display: inline;
+    float: left;
+    margin-top: 28px;
+}
+
+.check-box {
+    display: none;
+}
+
+.check-box + label {
+    display: block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border: solid 2px #c9c9c9;
+    background-color: #f3f3f3;
+}
+
+.check-box:checked + label:after {
+    content: '\2714';
+    position: absolute;
+    font-size: 25px;
+    top: -3px;
+    left: 3px;
+    color: #FF6D6D;
+}
+
+.checked + label:after {
+    content: '\2714';
+    font-size: 25px;
+    position: absolute;
+    top: -3px;
+    left: 3px;
+    color: #FF6D6D;
+    zoom: 1;
+}
+
+span.man {
+    position: absolute;
+    display: inline-block;
+    margin: 0 5px;
+    color: #16d0d8;
+    font-family: cursive;
+    top: 27px;
+    font-size: 25px;
+    line-height: inherit;
+    /* transition: all 2s; */
+    -webkit-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+span.woman {
+    position: absolute;
+    margin: 0 5px;
+    top: 24px;
+    color: #F08080;
+    font-family: "microsoft yahei";
+    font-size: 26px;
+    -webkit-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+.tk-detail {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    right:0;
+    bottom: 0;
+
+}
+.tk-detail .box {
+    position: relative;
+    width: 500px;
+    margin: auto;
+    height: 500px;
+    top:50%;
+    margin-top:-250px;
+    background-color: #ffffff;;
+}
+.tk-detail .box .box-content{
+    padding: 20px;
+    height: 330px;
+    overflow: auto;
+}
+#js-member-life{
+    width: 100%;
+}
+.tk-detail .box-content p {
+    font-size: 16px;
+    line-height: 20px;
+    white-space:pre-line;
+}
+
+.labels {
+    list-style: none;
+}
+
+.labels li {
+    float: left;
+    box-sizing: border-box;
+    margin: 8px 3px;
+}
+.tk-detail .box .option{position: absolute;bottom: 10px;height: 40px;width: 100%;}
+.tk-detail .box .option p{text-align: center;width: 100%;}
+@media  screen and (max-width: 768px){
+    .card-center{
+        display: none;;
+    }
+    .cell p:nth-child(1){
+        display: none;
+    }
+    .card-left{
+        width: 100%;
+    }
+    .card-left span{
+        float: right;;
+    }.cell {
+             position: absolute;
+             width: 112px;
+             display: block;
+             width: 47px;
+             left: 220px;
+             top: 42px;
+     }
+    .card-right {
+
+        width: 100%;
+    }
+    .bottom .btn{
+        padding: 0 10px;
+    }
+    .judge{
+        transform: translateX(90px);
+    }
+    .tk-detail .box {width: 100%;}
+}
